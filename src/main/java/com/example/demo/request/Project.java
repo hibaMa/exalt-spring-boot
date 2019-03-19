@@ -1,7 +1,9 @@
-package beans;
+package com.example.demo.request;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity
 public class Project {
 	
 	@Id

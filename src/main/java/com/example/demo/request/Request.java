@@ -1,19 +1,19 @@
 package com.example.demo.request;
 
 
+
+
+import java.util.*;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
-import beans.Component;
-import beans.Media;
-import beans.Press;
-import beans.Product;
-import beans.Project;
 
 
 
@@ -32,8 +32,15 @@ public class Request {
 	private String  type ;
 	private boolean isArgent ;
     private String testObjecteves;
-//    private Project[] project;
-//    private Product[] product;
+    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true )
+    @JoinColumn(name = "request_id") 
+    private List<Project> project = new ArrayList<Project>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true )
+    @JoinColumn(name = "request_id") 
+    private List<Product> product = new ArrayList<Product>();
+    
 //    private Component[] components;
 //    private Press[] presses;
 //    private Media[] media;
@@ -43,6 +50,26 @@ public class Request {
 	private Hub hub;
 
 	
+	public List<Project> getProject() {
+		return project;
+	}
+
+
+	public void setProject(List<Project> project) {
+		this.project = project;
+	}
+
+
+	public Hub getHub() {
+		return hub;
+	}
+
+
+	public void setHub(Hub hub) {
+		this.hub = hub;
+	}
+
+
 	public Request() {
 		
 	}
@@ -80,6 +107,16 @@ public class Request {
 
 	public String getDescription() {
 		return description;
+	}
+
+
+	public List<Product> getProduct() {
+		return product;
+	}
+
+
+	public void setProduct(List<Product> product) {
+		this.product = product;
 	}
 
 
@@ -148,8 +185,6 @@ public class Request {
 	}
 
 
-	
-
 
 	public String getTestObjecteves() {
 		return testObjecteves;
@@ -161,13 +196,9 @@ public class Request {
 	}
 
 
-	
-
-
-
 	public Request(String id, String comment, String name, String description, int weekNumber, int priority,
-			boolean isConsecutive, int shiftsLength, String type, boolean isArgent,
-			 String testObjecteves) {
+			boolean isConsecutive, int shiftsLength, String type, boolean isArgent, String testObjecteves,
+			List<Project> project, List<Product> product, Hub hub) {
 		super();
 		this.id = id;
 		this.comment = comment;
@@ -180,8 +211,15 @@ public class Request {
 		this.type = type;
 		this.isArgent = isArgent;
 		this.testObjecteves = testObjecteves;
+		this.project = project;
+		this.product = product;
+		this.hub = hub;
 	}
-	
+
+
+
+
+
 
 	
 }

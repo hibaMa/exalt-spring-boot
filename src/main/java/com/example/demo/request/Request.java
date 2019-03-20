@@ -1,61 +1,171 @@
 package com.example.demo.request;
 
-
-
-
 import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-
-
-
 
 @Entity
 public class Request {
 	
-	@Id
+	@Id 
 	private String id;
 	private String comment;
 	private String name;
 	private String description;
 	private int weekNumber;
 	private int  priority;
-	private boolean  isConsecutive;
+	private boolean isConsecutive;
 	private int shiftsLength;
 	private String  type ;
 	private boolean isArgent ;
     private String testObjecteves;
+    private Date created;
+    private String rejectedComment;
+    private String status;
+    private String testFileType;
     
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true )
-    @JoinColumn(name = "request_id") 
-    private List<Project> project = new ArrayList<Project>();
+    
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true )
+
+	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    private User owner;
+    
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "rejectedDetails_id", referencedColumnName = "id")
+    private RejectedDetails rejectedDetails;
+    
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
+    private Project project = new Project();
+
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL )
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product = new Product();
+    
+    @ManyToMany(cascade = CascadeType.ALL ,fetch = FetchType.LAZY )
+	@JoinTable(name = "req_comp", joinColumns = @JoinColumn(name = "request_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "comp_id", referencedColumnName = "id"))
+    private List<RequestComponent> components = new ArrayList<RequestComponent>();
+    
+    @ManyToMany(cascade = CascadeType.ALL ,fetch = FetchType.LAZY )
+	@JoinTable(name = "req_press", joinColumns = @JoinColumn(name = "request_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "press_id", referencedColumnName = "id"))
+    private List<Press> presses = new ArrayList<Press>();
+    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true ,fetch = FetchType.LAZY )
     @JoinColumn(name = "request_id") 
-    private List<Product> product = new ArrayList<Product>();
+    private List<RequestMedia> media = new ArrayList<RequestMedia>();
     
-//    private Component[] components;
-//    private Press[] presses;
-//    private Media[] media;
-    
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "hub_id", referencedColumnName = "id")
 	private Hub hub;
 
+    public Date getCreated() {
+		return created;
+	}
+
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+
+	public String getRejectedComment() {
+		return rejectedComment;
+	}
+
+
+	public void setRejectedComment(String rejectedComment) {
+		this.rejectedComment = rejectedComment;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public String getTestFileType() {
+		return testFileType;
+	}
+
+
+	public void setTestFileType(String testFileType) {
+		this.testFileType = testFileType;
+	}
+
+
+	public User getOwner() {
+		return owner;
+	}
+
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+
+	public RejectedDetails getRejectedDetails() {
+		return rejectedDetails;
+	}
+
+
+	public void setRejectedDetails(RejectedDetails rejectedDetails) {
+		this.rejectedDetails = rejectedDetails;
+	}
+
+    
+    public List<RequestComponent> getComponents() {
+		return components;
+	}
+
+
+	public void setComponents(List<RequestComponent> components) {
+		this.components = components;
+	}
+
+
+	public List<Press> getPresses() {
+		return presses;
+	}
+
+
+	public void setPresses(List<Press> presses) {
+		this.presses = presses;
+	}
+
+
+	public List<RequestMedia> getMedia() {
+		return media;
+	}
+
+
+	public void setMedia(List<RequestMedia> media) {
+		this.media = media;
+	}
+
 	
-	public List<Project> getProject() {
+	public Project getProject() {
 		return project;
 	}
 
 
-	public void setProject(List<Project> project) {
+	public void setProject(Project project) {
 		this.project = project;
 	}
 
@@ -110,12 +220,12 @@ public class Request {
 	}
 
 
-	public List<Product> getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
 
-	public void setProduct(List<Product> product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 
@@ -197,8 +307,10 @@ public class Request {
 
 
 	public Request(String id, String comment, String name, String description, int weekNumber, int priority,
-			boolean isConsecutive, int shiftsLength, String type, boolean isArgent, String testObjecteves,
-			List<Project> project, List<Product> product, Hub hub) {
+			boolean isConsecutive, int shiftsLength, String type, boolean isArgent, String testObjecteves, Date created,
+			String rejectedComment, String status, String testFileType, User owner, RejectedDetails rejectedDetails,
+			Project project, Product product, List<RequestComponent> components, List<Press> presses, List<RequestMedia> media,
+			Hub hub) {
 		super();
 		this.id = id;
 		this.comment = comment;
@@ -211,10 +323,23 @@ public class Request {
 		this.type = type;
 		this.isArgent = isArgent;
 		this.testObjecteves = testObjecteves;
+		this.created = created;
+		this.rejectedComment = rejectedComment;
+		this.status = status;
+		this.testFileType = testFileType;
+		this.owner = owner;
+		this.rejectedDetails = rejectedDetails;
 		this.project = project;
 		this.product = product;
+		this.components = components;
+		this.presses = presses;
+		this.media = media;
 		this.hub = hub;
 	}
+
+
+
+
 
 
 

@@ -1,20 +1,23 @@
-package beans;
+package com.example.demo.request;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Component {
-	@Id
-	private String compId;
+public class RequestComponent {
+	
+	@Id 
+	private String id;
 	private String name;
 	private int quantity;
 	
-	public String getCompId() {
-		return compId;
+	public String getid() {
+		return id;
 	}
-	public void setCompId(String compId) {
-		this.compId = compId;
+	public void setid(String id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -29,15 +32,13 @@ public class Component {
 		this.quantity = quantity;
 	}
 	
-	public Component() {}
+	public RequestComponent() {}
 	
-	public Component(String compId, String name, int quantity) {
+	public RequestComponent(String id, String name, int quantity) {
 		super();
-		this.compId = compId;
+		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
 	}
-	
-	
-	
+
 }

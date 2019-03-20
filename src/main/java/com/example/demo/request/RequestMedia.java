@@ -1,10 +1,10 @@
-package beans;
+package com.example.demo.request;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Media {
+public class RequestMedia {
 	@Id
 	private int mediaId;
 	private String name;
@@ -37,9 +37,9 @@ public class Media {
 		this.type = type;
 	}
 	
-	public Media() {}
+	public RequestMedia() {}
 	
-	public Media(int mediaId, String name, int quantity, String type) {
+	public RequestMedia(int mediaId, String name, int quantity, String type) {
 		super();
 		this.mediaId = mediaId;
 		this.name = name;

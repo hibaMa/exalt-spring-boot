@@ -6,11 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Hub {
+public class Authorities {
+	
 	@Id 
 	private String id;
 	private String name;
-
+	
 	public String getId() {
 		return id;
 	}
@@ -23,14 +24,10 @@ public class Hub {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public Hub() {}
-	
-	public Hub(String id, String name) {
+	public Authorities() {}
+	public Authorities(String id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
-	
-	
 }

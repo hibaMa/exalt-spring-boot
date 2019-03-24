@@ -54,7 +54,7 @@ public class Request {
     private Product product = new Product();
     
     @ManyToMany(cascade = CascadeType.ALL ,fetch = FetchType.LAZY )
-	@JoinTable(name = "req_comp", joinColumns = @JoinColumn(name = "request_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "comp_id", referencedColumnName = "id"))
+	@JoinTable(name = "req_comp", joinColumns = @JoinColumn(name = "request_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "comp_id", referencedColumnName = "compId"))
     private List<RequestComponent> components = new ArrayList<RequestComponent>();
     
     @ManyToMany(cascade = CascadeType.ALL ,fetch = FetchType.LAZY )

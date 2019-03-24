@@ -16,31 +16,31 @@ import com.example.demo.services.HubService;
 public class HubController {
 
 	@Autowired
-	private HubService HubService;
+	private HubService hubService;
 	
 	@RequestMapping("/api/v1/hub")
 	public List<Hub> getAllHub(){
-		return HubService.getAllHubs();
+		return hubService.getAllHubs();
 	}
 	
 	@RequestMapping("/api/v1/hub/all/{id}")
 	public Hub getHub(@PathVariable String id) {
-		 return HubService.getHub(id);
+		 return hubService.getHub(id);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="/api/v1/hub")
 	public void addHub(@RequestBody Hub hub) {
-		HubService.addHub(hub);
+		hubService.addHub(hub);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/hub/modify")
 	public void updateHub(@RequestBody Hub hub) {
-		HubService.updateHub(hub);
+		hubService.updateHub(hub);
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/hub/{id}")
 	public void deleteHub(@PathVariable String id) {
-		HubService.deleteHub(id);
+		hubService.deleteHub(id);
  	}
 
 }

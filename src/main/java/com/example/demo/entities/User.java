@@ -10,10 +10,9 @@ import javax.persistence.*;
 @Table(name="users")
 public class User {
 
-	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinTable(name = "owner_Authority",
-			  joinColumns = @JoinColumn(name = "owner_id", referencedColumnName = "id"), 
-			  inverseJoinColumns = @JoinColumn(name = "Authority_id", referencedColumnName = "id"))
+
+    @ManyToMany(cascade = CascadeType.ALL ,fetch = FetchType.LAZY )
+	@JoinTable(name = "user_Authorities", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
     private List<Authorities> authorities = new ArrayList<Authorities>();
 
 	private String email;
@@ -26,12 +25,7 @@ public class User {
 	private String username;
 	private String lastname;
 	
-	public List<Authorities> getComponents() {
-		return authorities;
-	}
-	public void setComponents(List<Authorities> authorities) {
-		this.authorities = authorities;
-	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -81,6 +75,13 @@ public class User {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+	
+	public List<Authorities> getAuthorities() {
+		return authorities;
+	}
+	public void setAuthorities(List<Authorities> authorities) {
+		this.authorities = authorities;
+	}
 	public User() {}
 	public User(List<Authorities> authorities, String email, boolean enabled, String firstname, String id,
 			Date lastPasswordResetDate, String password, String username, String lastname) {
@@ -95,7 +96,7 @@ public class User {
 		this.username = username;
 		this.lastname = lastname;
 	}
- 
+
  
 
 	

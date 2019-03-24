@@ -11,36 +11,33 @@ import com.example.demo.repository.RequestComponentRepository;
 
 @Service
 public class RequestComponentService {
-	
+
 	@Autowired
-	private RequestComponentRepository requestComponentRepository;	
-	
-	public List<RequestComponent> getAllRequestComponents(){
-		 ArrayList<RequestComponent> requestComponents= new ArrayList<RequestComponent>();
-		 Iterator<RequestComponent> itr=requestComponentRepository.findAll().iterator();
-		 while(itr.hasNext()) {
-			 requestComponents.add((RequestComponent)itr.next());
-		 }
-		 return requestComponents;
+	private RequestComponentRepository requestComponentRepository;
+
+	public List<RequestComponent> getAllRequestComponents() {
+		ArrayList<RequestComponent> requestComponents = new ArrayList<RequestComponent>();
+		Iterator<RequestComponent> itr = requestComponentRepository.findAll().iterator();
+		while (itr.hasNext()) {
+			requestComponents.add((RequestComponent) itr.next());
+		}
+		return requestComponents;
 	}
-	
-	public RequestComponent getRequestComponent(String id) {
-		return requestComponentRepository.findById(id).get();
+
+	public RequestComponent getRequestComponent(String compId) {
+		return requestComponentRepository.findById(compId).get();
 	}
-	
-	public void addRequestComponent(RequestComponent requestComponent ) {
+
+	public void addRequestComponent(RequestComponent requestComponent) {
 		requestComponentRepository.save(requestComponent);
 	}
-	
+
 	public void updateRequestComponent(RequestComponent requestComponent) {
 		requestComponentRepository.save(requestComponent);
 	}
 
-	
-	public void deleteRequestComponent(String id) {
-		requestComponentRepository.deleteById(id);
+	public void deleteRequestComponent(String compId) {
+		requestComponentRepository.deleteById(compId);
 	}
-
-
 
 }

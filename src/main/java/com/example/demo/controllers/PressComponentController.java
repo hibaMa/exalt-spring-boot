@@ -15,27 +15,27 @@ public class PressComponentController {
 	@Autowired
 	private PressComponentService pressComponentService;
 	
-	@RequestMapping("/api/v1/PressComponent")
+	@RequestMapping("/api/v1/pressComponent")
 	public List<PressComponent> getAllPressComponent(){
 		return pressComponentService.getAllPressComponents();
 	}
 	
-	@RequestMapping("/api/v1/PressComponent/all/{id}")
+	@RequestMapping("/api/v1/pressComponent/all/{id}")
 	public PressComponent getPressComponent(@PathVariable String id) {
 		 return pressComponentService.getPressComponent(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/PressComponent")
+	@RequestMapping(method=RequestMethod.POST,value="/api/v1/pressComponent")
 	public void addPressComponent(@RequestBody PressComponent pressComponent) {
 		pressComponentService.addPressComponent(pressComponent);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/PressComponent/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/pressComponent/modify")
 	public void updatePressComponent(@RequestBody PressComponent pressComponent) {
 		pressComponentService.updatePressComponent(pressComponent);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/PressComponent/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/pressComponent/{id}")
 	public void deletePressComponent(@PathVariable String id) {
 		pressComponentService.deletePressComponent(id);
  	}

@@ -1,21 +1,26 @@
 package com.example.demo.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class RequestComponent {
 	
 	@Id 
-	private String id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="compId")
+	private int compId;
 	private String name;
 	private int quantity;
 	
-	public String getid() {
-		return id;
+	public int getid() {
+		return compId;
 	}
-	public void setid(String id) {
-		this.id = id;
+	public void setid(int compId) {
+		this.compId = compId;
 	}
 	public String getName() {
 		return name;
@@ -32,9 +37,9 @@ public class RequestComponent {
 	
 	public RequestComponent() {}
 	
-	public RequestComponent(String id, String name, int quantity) {
+	public RequestComponent(int compId, String name, int quantity) {
 		super();
-		this.id = id;
+		this.compId = compId;
 		this.name = name;
 		this.quantity = quantity;
 	}

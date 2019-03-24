@@ -23,9 +23,9 @@ public class RequestComponentController {
 		return requestComponentService.getAllRequestComponents();
 	}
 	
-	@RequestMapping("/api/v1/requestComponent/all/{id}")
-	public RequestComponent getRequestComponent(@PathVariable String id) {
-		 return requestComponentService.getRequestComponent(id);
+	@RequestMapping("/api/v1/requestComponent/all/{compId}")
+	public RequestComponent getRequestComponent(@PathVariable String compId) {
+		 return requestComponentService.getRequestComponent(compId);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="/api/v1/requestComponent")
@@ -38,9 +38,9 @@ public class RequestComponentController {
 		requestComponentService.updateRequestComponent(requestComponent);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/RequestComponent/{id}")
-	public void deleteRequestComponent(@PathVariable String id) {
-		requestComponentService.deleteRequestComponent(id);
+	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/RequestComponent/{compId}")
+	public void deleteRequestComponent(@PathVariable String compId) {
+		requestComponentService.deleteRequestComponent(compId);
  	}
 
 }

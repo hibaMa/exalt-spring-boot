@@ -26,8 +26,8 @@ public class Press {
 	private String description;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "hub_id", referencedColumnName = "id")
-	private Hub hub;
+    @JoinColumn(name = "hup_id", referencedColumnName = "id")
+	private Hup hup;
 
 	private String imageUrl;
 
@@ -56,12 +56,12 @@ public class Press {
 		this.components = components;
 	}
 
-	public Hub getHub() {
-		return hub;
+	public Hup getHup() {
+		return hup;
 	}
 
-	public void setHub(Hub hub) {
-		this.hub = hub;
+	public void setHub(Hup hup) {
+		this.hup = hup;
 	}
 
 	public List<PressMedia> getMedia() {
@@ -195,7 +195,7 @@ public class Press {
 	public Press() {
 	}
 
-	public Press(String id, List<PressComponent> components, String description, Hub hub, String imageUrl,
+	public Press(String id, List<PressComponent> components, String description, Hup hup, String imageUrl,
 			List<PressMedia> media, String name, String ph, String printCare, String serialNumber, String series,
 			String software, String type, String utilityCabinet, String wh, String whLaserPower, String whMotorise,
 			String whType) {
@@ -203,7 +203,7 @@ public class Press {
 		this.id = id;
 		this.components = components;
 		this.description = description;
-		this.hub = hub;
+		this.hup = hup;
 		this.imageUrl = imageUrl;
 		this.media = media;
 		this.name = name;

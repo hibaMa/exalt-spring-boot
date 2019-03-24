@@ -1,4 +1,4 @@
-package com.example.demo.request;
+package com.example.demo.services;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,11 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entities.Request;
+import com.example.demo.repository.RequestRepository;
+
 @Service
 public class RequestService {
 	
 	@Autowired
-	private RequestRepository requestRepository;
+	private RequestRepository requestRepository;	
 	
 	public List<Request> getAllRequest(){
 		 ArrayList<Request> requests= new ArrayList<Request>();
@@ -38,6 +41,6 @@ public class RequestService {
 		requestRepository.deleteById(id);
 	}
 
-	
+
 
 }

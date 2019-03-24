@@ -1,12 +1,11 @@
-package com.example.demo.request;
+package com.example.demo.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+ 
 import javax.persistence.Id;
 
 @Entity
-public class Authorities {
+public class Product {
 	
 	@Id 
 	private String id;
@@ -24,10 +23,12 @@ public class Authorities {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Authorities() {}
-	public Authorities(String id, String name) {
+	public Product() {}
+	public Product(String id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
+	
+	
 }

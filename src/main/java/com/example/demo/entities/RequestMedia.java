@@ -1,4 +1,4 @@
-package com.example.demo.request;
+package com.example.demo.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -6,17 +6,17 @@ import javax.persistence.Id;
 @Entity
 public class RequestMedia {
 	@Id
-	private int mediaId;
+	private int id;
 	private String name;
 	private int quantity;
     private String type;
     
     
-	public int getMediaId() {
-		return mediaId;
+	public int getid() {
+		return id;
 	}
-	public void setMediaId(int mediaId) {
-		this.mediaId = mediaId;
+	public void setid(int id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -39,9 +39,9 @@ public class RequestMedia {
 	
 	public RequestMedia() {}
 	
-	public RequestMedia(int mediaId, String name, int quantity, String type) {
+	public RequestMedia(int id, String name, int quantity, String type) {
 		super();
-		this.mediaId = mediaId;
+		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
 		this.type = type;

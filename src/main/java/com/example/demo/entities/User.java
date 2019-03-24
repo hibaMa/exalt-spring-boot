@@ -1,4 +1,4 @@
-package com.example.demo.request;
+package com.example.demo.entities;
 
 import java.util.ArrayList;
 import java.util.Date;

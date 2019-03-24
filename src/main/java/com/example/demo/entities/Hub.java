@@ -1,15 +1,15 @@
-package com.example.demo.request;
+package com.example.demo.entities;
 
 import javax.persistence.Entity;
+ 
 import javax.persistence.Id;
 
 @Entity
-public class PressComponent {
-	
+public class Hub {
 	@Id 
 	private String id;
 	private String name;
-	
+
 	public String getId() {
 		return id;
 	}
@@ -22,11 +22,14 @@ public class PressComponent {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public PressComponent() {}
-	public PressComponent(String id, String name) {
+	
+	public Hub() {}
+	
+	public Hub(String id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
+	
 	
 }

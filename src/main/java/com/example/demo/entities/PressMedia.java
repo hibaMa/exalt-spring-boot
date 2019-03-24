@@ -1,16 +1,15 @@
-package com.example.demo.request;
+package com.example.demo.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+ 
 import javax.persistence.Id;
 
 @Entity
-public class Hub {
+public class PressMedia {
 	@Id 
 	private String id;
 	private String name;
-
+	
 	public String getId() {
 		return id;
 	}
@@ -23,14 +22,11 @@ public class Hub {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public Hub() {}
-	
-	public Hub(String id, String name) {
+	public PressMedia() {}
+	public PressMedia(String id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
-	
 	
 }

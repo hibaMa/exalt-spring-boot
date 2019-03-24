@@ -1,12 +1,11 @@
-package com.example.demo.request;
+package com.example.demo.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class PressMedia {
+public class PressComponent {
+	
 	@Id 
 	private String id;
 	private String name;
@@ -23,8 +22,8 @@ public class PressMedia {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public PressMedia() {}
-	public PressMedia(String id, String name) {
+	public PressComponent() {}
+	public PressComponent(String id, String name) {
 		super();
 		this.id = id;
 		this.name = name;

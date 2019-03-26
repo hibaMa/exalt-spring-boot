@@ -18,27 +18,27 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping("/api/v1/product")
+	@RequestMapping("/api/v1/products")
 	public List<Product> getAllProduct(){
 		return productService.getAllProducts();
 	}
 	
-	@RequestMapping("/api/v1/Product/all/{id}")
+	@RequestMapping("/api/v1/products/all/{id}")
 	public Product getProduct(@PathVariable String id) {
 		 return productService.getProduct(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/product")
+	@RequestMapping(method=RequestMethod.POST,value="/api/v1/products")
 	public void addProduct(@RequestBody Product product) {
 		productService.addProduct(product);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/product/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/products/modify")
 	public void updateProduct(@RequestBody Product product) {
 		productService.updateProduct(product);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/product/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/products/{id}")
 	public void deleteProduct(@PathVariable String id) {
 		productService.deleteProduct(id);
  	}

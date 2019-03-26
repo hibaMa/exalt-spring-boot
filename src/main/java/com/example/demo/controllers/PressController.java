@@ -18,27 +18,27 @@ public class PressController {
 	@Autowired
 	private PressService pressService;
 	
-	@RequestMapping("/api/v1/press")
+	@RequestMapping("/api/v1/presses")
 	public List<Press> getAllPress(){
 		return pressService.getAllPress();
 	}
 	
-	@RequestMapping("/api/v1/press/all/{id}")
+	@RequestMapping("/api/v1/presses/all/{id}")
 	public Press getPress(@PathVariable String id) {
 		 return pressService.getPress(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/press")
+	@RequestMapping(method=RequestMethod.POST,value="/api/v1/presses")
 	public void addPress(@RequestBody Press press) {
 		pressService.addPress(press);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/press/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/presses/modify")
 	public void updatePress(@RequestBody Press press) {
 		pressService.updatePress(press);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/press/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/presses/{id}")
 	public void deletePress(@PathVariable String id) {
 		pressService.deletePress(id);
  	}

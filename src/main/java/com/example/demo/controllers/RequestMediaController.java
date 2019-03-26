@@ -18,27 +18,27 @@ public class RequestMediaController {
 	@Autowired
 	private RequestMediaService requestMediaService;
 	
-	@RequestMapping("/api/v1/requestMedia")
+	@RequestMapping("/api/v1/media")
 	public List<RequestMedia> getAllRequestMedia(){
 		return requestMediaService.getAllRequestMedias();
 	}
 	
-	@RequestMapping("/api/v1/requestMedia/all/{id}")
+	@RequestMapping("/api/v1/media/all/{id}")
 	public RequestMedia getRequestMedia(@PathVariable String id) {
 		 return requestMediaService.getRequestMedia(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/requestMedia")
+	@RequestMapping(method=RequestMethod.POST,value="/api/v1/media")
 	public void addRequestMedia(@RequestBody RequestMedia requestMedia) {
 		requestMediaService.addRequestMedia(requestMedia);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/requestMedia/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/media/modify")
 	public void updateRequestMedia(@RequestBody RequestMedia requestMedia) {
 		requestMediaService.updateRequestMedia(requestMedia);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/requestMedia/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/media/{id}")
 	public void deleteRequestMedia(@PathVariable String id) {
 		requestMediaService.deleteRequestMedia(id);
  	}

@@ -348,8 +348,6 @@ var AddRequestComponent = /** @class */ (function () {
         }, function (error) {
             console.log(error);
         });
-        // var requestID = 3;
-        // this.submitFiles(requestID);
     };
     AddRequestComponent.prototype.initSubmitData = function () {
         var _this = this;
@@ -666,15 +664,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
 /* harmony import */ var _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./main-page/main-page.component */ "./src/app/main-page/main-page.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _services_jwt_interceptor_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/jwt-interceptor.service */ "./src/app/services/jwt-interceptor.service.ts");
-/* harmony import */ var angular2_wizard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! angular2-wizard */ "./node_modules/angular2-wizard/dist/index.js");
-/* harmony import */ var angular2_wizard__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(angular2_wizard__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm5/slide-toggle.es5.js");
-/* harmony import */ var _add_request_add_request_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./add-request/add-request.component */ "./src/app/add-request/add-request.component.ts");
-/* harmony import */ var _slider_slider_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./slider/slider.component */ "./src/app/slider/slider.component.ts");
-/* harmony import */ var _enter_enter_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./enter/enter.component */ "./src/app/enter/enter.component.ts");
-/* harmony import */ var _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./upload-file/upload-file.component */ "./src/app/upload-file/upload-file.component.ts");
+/* harmony import */ var angular2_wizard__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! angular2-wizard */ "./node_modules/angular2-wizard/dist/index.js");
+/* harmony import */ var angular2_wizard__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(angular2_wizard__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm5/slide-toggle.es5.js");
+/* harmony import */ var _add_request_add_request_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./add-request/add-request.component */ "./src/app/add-request/add-request.component.ts");
+/* harmony import */ var _slider_slider_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./slider/slider.component */ "./src/app/slider/slider.component.ts");
+/* harmony import */ var _enter_enter_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./enter/enter.component */ "./src/app/enter/enter.component.ts");
+/* harmony import */ var _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./upload-file/upload-file.component */ "./src/app/upload-file/upload-file.component.ts");
 
 
 
@@ -692,8 +689,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
+// import { JwtInterceptorService } from './services/jwt-interceptor.service';
 
 
 
@@ -715,10 +711,10 @@ var AppModule = /** @class */ (function () {
                 _log_in_log_in_component__WEBPACK_IMPORTED_MODULE_13__["LogInComponent"],
                 _register_register_component__WEBPACK_IMPORTED_MODULE_14__["RegisterComponent"],
                 _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_15__["MainPageComponent"],
-                _add_request_add_request_component__WEBPACK_IMPORTED_MODULE_21__["AddRequestComponent"],
-                _slider_slider_component__WEBPACK_IMPORTED_MODULE_22__["SliderComponent"],
-                _enter_enter_component__WEBPACK_IMPORTED_MODULE_23__["EnterComponent"],
-                _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_24__["UploadFileComponent"]
+                _add_request_add_request_component__WEBPACK_IMPORTED_MODULE_20__["AddRequestComponent"],
+                _slider_slider_component__WEBPACK_IMPORTED_MODULE_21__["SliderComponent"],
+                _enter_enter_component__WEBPACK_IMPORTED_MODULE_22__["EnterComponent"],
+                _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_23__["UploadFileComponent"]
             ],
             imports: [
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"],
@@ -727,17 +723,16 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"],
-                _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_20__["MatSlideToggleModule"],
+                _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_19__["MatSlideToggleModule"],
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
                 angular_font_awesome__WEBPACK_IMPORTED_MODULE_10__["AngularFontAwesomeModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_16__["HttpClientModule"],
-                angular2_wizard__WEBPACK_IMPORTED_MODULE_18__["FormWizardModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_19__["FormsModule"]
+                angular2_wizard__WEBPACK_IMPORTED_MODULE_17__["FormWizardModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_18__["FormsModule"]
             ],
             providers: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_3__["DatePipe"],
-                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_16__["HTTP_INTERCEPTORS"], useClass: _services_jwt_interceptor_service__WEBPACK_IMPORTED_MODULE_17__["JwtInterceptorService"], multi: true },
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
@@ -763,7 +758,7 @@ __webpack_require__.r(__webpack_exports__);
 //   baseURL:"https://hptestinghub.com/testhub"
 // };
 var data = {
-    baseURL: 'http://localhost:8090/'
+    baseURL: 'http://localhost:8090'
 };
 
 
@@ -960,6 +955,8 @@ var LogInComponent = /** @class */ (function () {
     };
     LogInComponent.prototype.signIn = function (userEmail, userPass) {
         var _this = this;
+        this.router.navigate(['/main']);
+        return;
         userEmail = userEmail.trim();
         userPass = userPass.trim();
         if (!userEmail || !userPass) {
@@ -1265,44 +1262,6 @@ var DataBaseService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], DataBaseService);
     return DataBaseService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/services/jwt-interceptor.service.ts":
-/*!*****************************************************!*\
-  !*** ./src/app/services/jwt-interceptor.service.ts ***!
-  \*****************************************************/
-/*! exports provided: JwtInterceptorService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JwtInterceptorService", function() { return JwtInterceptorService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var JwtInterceptorService = /** @class */ (function () {
-    function JwtInterceptorService() {
-    }
-    JwtInterceptorService.prototype.intercept = function (req, next) {
-        req = req.clone({
-            setHeaders: {
-                Authorization: "Bearer " + JSON.parse(localStorage.getItem("auth_token")).token
-            }
-        });
-        return next.handle(req);
-    };
-    JwtInterceptorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], JwtInterceptorService);
-    return JwtInterceptorService;
 }());
 
 

@@ -6,7 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
- 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -14,19 +15,21 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 public class Press {
 	@Id
-	private String id;
-
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "pressComp", joinColumns = @JoinColumn(name = "press_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "component_id", referencedColumnName = "id"))
 	private List<PressComponent> components = new ArrayList<PressComponent>();
 
 	private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "hup_id", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "hup_id", referencedColumnName = "id")
 	private Hup hup;
 
 	private String imageUrl;
@@ -80,11 +83,11 @@ public class Press {
 		this.description = description;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -195,7 +198,7 @@ public class Press {
 	public Press() {
 	}
 
-	public Press(String id, List<PressComponent> components, String description, Hup hup, String imageUrl,
+	public Press(Long id, List<PressComponent> components, String description, Hup hup, String imageUrl,
 			List<PressMedia> media, String name, String ph, String printCare, String serialNumber, String series,
 			String software, String type, String utilityCabinet, String wh, String whLaserPower, String whMotorise,
 			String whType) {

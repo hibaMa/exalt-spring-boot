@@ -18,27 +18,27 @@ public class RequestComponentController {
 	@Autowired
 	private RequestComponentService requestComponentService;
 	
-	@RequestMapping("/api/v1/requestComponent")
+	@RequestMapping("/api/v1/components")
 	public List<RequestComponent> getAllRequestComponent(){
 		return requestComponentService.getAllRequestComponents();
 	}
 	
-	@RequestMapping("/api/v1/requestComponent/all/{compId}")
+	@RequestMapping("/api/v1/components/all/{compId}")
 	public RequestComponent getRequestComponent(@PathVariable String compId) {
 		 return requestComponentService.getRequestComponent(compId);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/requestComponent")
+	@RequestMapping(method=RequestMethod.POST,value="/api/v1/components")
 	public void addRequestComponent(@RequestBody RequestComponent requestComponent) {
 		requestComponentService.addRequestComponent(requestComponent);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/requestComponent/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/components/modify")
 	public void updateRequestComponent(@RequestBody RequestComponent requestComponent) {
 		requestComponentService.updateRequestComponent(requestComponent);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/RequestComponent/{compId}")
+	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/components/{compId}")
 	public void deleteRequestComponent(@PathVariable String compId) {
 		requestComponentService.deleteRequestComponent(compId);
  	}

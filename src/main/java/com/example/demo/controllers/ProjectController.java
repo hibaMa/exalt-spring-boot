@@ -18,27 +18,27 @@ public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
 	
-	@RequestMapping("/api/v1/project")
+	@RequestMapping("/api/v1/projects")
 	public List<Project> getAllProject(){
 		return projectService.getAllProjects();
 	}
 	
-	@RequestMapping("/api/v1/project/all/{id}")
+	@RequestMapping("/api/v1/projects/all/{id}")
 	public Project getProject(@PathVariable String id) {
 		 return projectService.getProject(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/project")
+	@RequestMapping(method=RequestMethod.POST,value="/api/v1/projects")
 	public void addProject(@RequestBody Project project) {
 		projectService.addProject(project);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/project/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/projects/modify")
 	public void updateProject(@RequestBody Project project) {
 		projectService.updateProject(project);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/project/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/projects/{id}")
 	public void deleteProject(@PathVariable String id) {
 		projectService.deleteProject(id);
  	}

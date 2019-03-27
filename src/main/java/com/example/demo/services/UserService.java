@@ -24,8 +24,8 @@ public class UserService {
 		 return Users;
 	}
 	
-	public User getUser(String id) {
-		return userRepository.findById(id).get();
+	public User getUser(long id) {
+		return userRepository.findById(id);
 	}
 	
 	public void addUser(User user) {
@@ -37,7 +37,7 @@ public class UserService {
 	}
 
 	
-	public void deleteUser(String id) {
+	public void deleteUser(long id) {
 		userRepository.deleteById(id);
 	}
 

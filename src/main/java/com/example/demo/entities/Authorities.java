@@ -5,8 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.GenericGenerator;
-
+ 
 @Entity
 public class Authorities {
 
@@ -14,9 +13,9 @@ public class Authorities {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -35,7 +34,7 @@ public class Authorities {
 	public Authorities() {
 	}
 
-	public Authorities(Long id, String name) {
+	public Authorities(long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;

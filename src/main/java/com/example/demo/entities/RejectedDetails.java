@@ -5,14 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.GenericGenerator;
-
-@Entity
+ @Entity
 public class RejectedDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	private String description;
 
 	public String getDescription() {
@@ -23,18 +21,18 @@ public class RejectedDetails {
 		this.description = description;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
 	public RejectedDetails() {
 	}
 
-	public RejectedDetails(String description, Long id) {
+	public RejectedDetails(String description, long id) {
 		super();
 		this.description = description;
 		this.id = id;

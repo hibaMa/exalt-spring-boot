@@ -24,7 +24,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/api/v1/user/all/{id}")
-	public User getUser(@PathVariable String id) {
+	public User getUser(@PathVariable long id) {
 		 return userService.getUser(id);
 	}
 	
@@ -39,7 +39,7 @@ public class UserController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/user/{id}")
-	public void deleteUser(@PathVariable String id) {
+	public void deleteUser(@PathVariable long id) {
 		userService.deleteUser(id);
  	}
 

@@ -1,29 +1,26 @@
 package com.example.demo.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.GenericGenerator;
-
+ 
 @Entity
 public class RequestComponent {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "compId")
-	private Long compId;
+	private long id;
 	private String name;
 	private int quantity;
 
-	public Long getid() {
-		return compId;
+	public long getid() {
+		return id;
 	}
 
-	public void setid(Long compId) {
-		this.compId = compId;
+	public void setid(long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -45,9 +42,9 @@ public class RequestComponent {
 	public RequestComponent() {
 	}
 
-	public RequestComponent(Long compId, String name, int quantity) {
+	public RequestComponent(long id, String name, int quantity) {
 		super();
-		this.compId = compId;
+		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
 	}

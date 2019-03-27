@@ -24,8 +24,8 @@ public class PressComponentService {
 		 return PressComponents;
 	}
 	
-	public PressComponent getPressComponent(String id) {
-		return pressComponentRepository.findById(id).get();
+	public PressComponent getPressComponent(long id) {
+		return pressComponentRepository.findById(id);
 	}
 	
 	public void addPressComponent(PressComponent PressComponent) {
@@ -37,7 +37,7 @@ public class PressComponentService {
 	}
 
 	
-	public void deletePressComponent(String id) {
+	public void deletePressComponent(long id) {
 		pressComponentRepository.deleteById(id);
 	}
 

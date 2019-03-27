@@ -24,7 +24,7 @@ public class PressMediaController {
 	}
 	
 	@RequestMapping("/api/v1/pressMedia/all/{id}")
-	public PressMedia getPressMedia(@PathVariable String id) {
+	public PressMedia getPressMedia(@PathVariable long id) {
 		 return pressMediaService.getPressMedia(id);
 	}
 	
@@ -39,7 +39,7 @@ public class PressMediaController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/pressMedia/{id}")
-	public void deletePressMedia(@PathVariable String id) {
+	public void deletePressMedia(@PathVariable long id) {
 		pressMediaService.deletePressMedia(id);
  	}
 

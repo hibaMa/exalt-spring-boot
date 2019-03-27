@@ -24,8 +24,8 @@ public class RequestMediaService {
 		 return requestMediaList;
 	}
 	
-	public RequestMedia getRequestMedia(String id) {
-		return requestMediaRepository.findById(id).get();
+	public RequestMedia getRequestMedia(long id) {
+		return requestMediaRepository.findById(id);
 	}
 	
 	public void addRequestMedia(RequestMedia requestMedia) {
@@ -37,7 +37,7 @@ public class RequestMediaService {
 	}
 
 	
-	public void deleteRequestMedia(String id) {
+	public void deleteRequestMedia(long id) {
 		requestMediaRepository.deleteById(id);
 	}
 

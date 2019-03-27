@@ -5,20 +5,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 public class PressMedia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	private String name;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -33,7 +31,7 @@ public class PressMedia {
 	public PressMedia() {
 	}
 
-	public PressMedia(Long id, String name) {
+	public PressMedia(long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;

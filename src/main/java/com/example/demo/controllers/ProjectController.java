@@ -24,7 +24,7 @@ public class ProjectController {
 	}
 	
 	@RequestMapping("/api/v1/projects/all/{id}")
-	public Project getProject(@PathVariable String id) {
+	public Project getProject(@PathVariable long id) {
 		 return projectService.getProject(id);
 	}
 	
@@ -39,7 +39,7 @@ public class ProjectController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/projects/{id}")
-	public void deleteProject(@PathVariable String id) {
+	public void deleteProject(@PathVariable long id) {
 		projectService.deleteProject(id);
  	}
 

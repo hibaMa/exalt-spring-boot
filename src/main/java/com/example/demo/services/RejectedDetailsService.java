@@ -24,8 +24,8 @@ public class RejectedDetailsService {
 		 return RejectedDetailss;
 	}
 	
-	public RejectedDetails getRejectedDetails(String id) {
-		return rejectedDetailsRepository.findById(id).get();
+	public RejectedDetails getRejectedDetails(long id) {
+		return rejectedDetailsRepository.findById(id);
 	}
 	
 	public void addRejectedDetails(RejectedDetails rejectedDetails) {
@@ -37,7 +37,7 @@ public class RejectedDetailsService {
 	}
 
 	
-	public void deleteRejectedDetails(String id) {
+	public void deleteRejectedDetails(long id) {
 		rejectedDetailsRepository.deleteById(id);
 	}
 

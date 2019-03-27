@@ -24,7 +24,7 @@ public class HubController {
 	}
 	
 	@RequestMapping("/api/v1/hub/all/{id}")
-	public Hub getHub(@PathVariable String id) {
+	public Hub getHub(@PathVariable long id) {
 		 return hubService.getHub(id);
 	}
 	
@@ -39,7 +39,7 @@ public class HubController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/hub/{id}")
-	public void deleteHub(@PathVariable String id) {
+	public void deleteHub(@PathVariable long id) {
 		hubService.deleteHub(id);
  	}
 

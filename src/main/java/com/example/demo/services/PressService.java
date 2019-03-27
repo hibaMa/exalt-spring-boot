@@ -24,8 +24,8 @@ public class PressService {
 		 return PressList;
 	}
 	
-	public Press getPress(String id) {
-		return pressRepository.findById(id).get();
+	public Press getPress(long id) {
+		return pressRepository.findById(id) ;
 	}
 	
 	public void addPress(Press Press) {
@@ -37,7 +37,7 @@ public class PressService {
 	}
 
 	
-	public void deletePress(String id) {
+	public void deletePress(long id) {
 		pressRepository.deleteById(id);
 	}
 

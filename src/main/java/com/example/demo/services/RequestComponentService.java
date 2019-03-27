@@ -24,8 +24,8 @@ public class RequestComponentService {
 		return requestComponents;
 	}
 
-	public RequestComponent getRequestComponent(String compId) {
-		return requestComponentRepository.findById(compId).get();
+	public RequestComponent getRequestComponent(long id) {
+		return requestComponentRepository.findById(id);
 	}
 
 	public void addRequestComponent(RequestComponent requestComponent) {
@@ -36,8 +36,8 @@ public class RequestComponentService {
 		requestComponentRepository.save(requestComponent);
 	}
 
-	public void deleteRequestComponent(String compId) {
-		requestComponentRepository.deleteById(compId);
+	public void deleteRequestComponent(long id) {
+		requestComponentRepository.deleteById(id);
 	}
 
 }

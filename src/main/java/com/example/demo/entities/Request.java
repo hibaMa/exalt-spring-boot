@@ -2,7 +2,6 @@ package com.example.demo.entities;
 
 import java.util.*;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,13 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Request {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	private String comment;
 	private String name;
 	private String description;
@@ -53,7 +51,7 @@ public class Request {
 	private Product product = new Product();
 
 	@ManyToMany( fetch = FetchType.LAZY)
-	@JoinTable(name = "req_comp", joinColumns = @JoinColumn(name = "request_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "comp_id", referencedColumnName = "compId"))
+	@JoinTable(name = "req_comp", joinColumns = @JoinColumn(name = "request_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "comp_id", referencedColumnName = "id"))
 	private List<RequestComponent> components = new ArrayList<RequestComponent>();
 
 	@ManyToMany( fetch = FetchType.LAZY)
@@ -160,11 +158,11 @@ public class Request {
 
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -256,7 +254,7 @@ public class Request {
 		this.testObjecteves = testObjecteves;
 	}
 
-	public Request(Long id, String comment, String name, String description, int weekNumber, int priority,
+	public Request(long id, String comment, String name, String description, int weekNumber, int priority,
 			boolean isConsecutive, int shiftsLength, String type, boolean isArgent, String testObjecteves, Date created,
 			String rejectedComment, String status, String testFileType, User owner, RejectedDetails rejectedDetails,
 			Project project, Product product, List<RequestComponent> components, List<Press> presses,

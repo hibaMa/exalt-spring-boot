@@ -5,22 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 public class RequestMedia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	private String name;
 	private int quantity;
 	private String type;
 
-	public Long getid() {
+	public long getid() {
 		return id;
 	}
 
-	public void setid(Long id) {
+	public void setid(long id) {
 		this.id = id;
 	}
 
@@ -51,7 +49,7 @@ public class RequestMedia {
 	public RequestMedia() {
 	}
 
-	public RequestMedia(Long id, String name, int quantity, String type) {
+	public RequestMedia(long id, String name, int quantity, String type) {
 		super();
 		this.id = id;
 		this.name = name;

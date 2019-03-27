@@ -4,9 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
@@ -22,7 +29,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	private Date lastPasswordResetDate;
 	private String password;
 	private String username;
@@ -52,11 +59,11 @@ public class User {
 		this.firstname = firstname;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -103,7 +110,7 @@ public class User {
 	public User() {
 	}
 
-	public User(List<Authorities> authorities, String email, boolean enabled, String firstname, Long id,
+	public User(List<Authorities> authorities, String email, boolean enabled, String firstname, long id,
 			Date lastPasswordResetDate, String password, String username, String lastname) {
 		super();
 		this.authorities = authorities;

@@ -24,8 +24,8 @@ public class HubService {
 		 return hubs;
 	}
 	
-	public Hub getHub(String id) {
-		return hubRepository.findById(id).get();
+	public Hub getHub(long id) {
+		return hubRepository.findById(id);
 	}
 	
 	public void addHub(Hub hub) {
@@ -37,7 +37,7 @@ public class HubService {
 	}
 
 	
-	public void deleteHub(String id) {
+	public void deleteHub(long id) {
 		hubRepository.deleteById(id);
 	}
 

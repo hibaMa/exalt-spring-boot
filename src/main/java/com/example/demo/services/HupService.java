@@ -24,8 +24,8 @@ public class HupService {
 		 return hups;
 	}
 	
-	public Hup getHup(String id) {
-		return hupRepository.findById(id).get();
+	public Hup getHup(long id) {
+		return hupRepository.findById(id);
 	}
 	
 	public void addHup(Hup hup) {
@@ -37,7 +37,7 @@ public class HupService {
 	}
 
 	
-	public void deleteHup(String id) {
+	public void deleteHup(long id) {
 		hupRepository.deleteById(id);
 	}
 

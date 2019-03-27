@@ -23,7 +23,7 @@ public class AuthoritiesController {
 	}
 	
 	@RequestMapping("/api/v1/authorities/all/{id}")
-	public Authorities getAuthority(@PathVariable String id) {
+	public Authorities getAuthority(@PathVariable long id) {
 		 return authoritiesService.getAuthority(id);
 	}
 	
@@ -38,7 +38,7 @@ public class AuthoritiesController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/authorities/{id}")
-	public void deleteAuthority(@PathVariable String id) {
+	public void deleteAuthority(@PathVariable long id) {
 		authoritiesService.deleteAuthority(id);
  	}
 }

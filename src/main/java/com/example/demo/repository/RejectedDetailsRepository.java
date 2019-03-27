@@ -1,11 +1,17 @@
 package com.example.demo.repository;
 
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.demo.entities.RejectedDetails;
+ import com.example.demo.entities.RejectedDetails;
 
 public interface RejectedDetailsRepository  extends CrudRepository<RejectedDetails,String>{
 	
 
-
+	RejectedDetails findById(long id);
+	@Transactional
+	@Modifying
+	int deleteById(long id);
 }

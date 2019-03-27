@@ -15,13 +15,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.GenericGenerator;
-
+ 
 @Entity
 public class Press {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "pressComp", joinColumns = @JoinColumn(name = "press_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "component_id", referencedColumnName = "id"))
 	private List<PressComponent> components = new ArrayList<PressComponent>();
@@ -83,11 +82,11 @@ public class Press {
 		this.description = description;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -198,7 +197,7 @@ public class Press {
 	public Press() {
 	}
 
-	public Press(Long id, List<PressComponent> components, String description, Hup hup, String imageUrl,
+	public Press(long id, List<PressComponent> components, String description, Hup hup, String imageUrl,
 			List<PressMedia> media, String name, String ph, String printCare, String serialNumber, String series,
 			String software, String type, String utilityCabinet, String wh, String whLaserPower, String whMotorise,
 			String whType) {

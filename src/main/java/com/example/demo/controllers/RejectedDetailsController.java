@@ -24,7 +24,7 @@ public class RejectedDetailsController {
 	}
 	
 	@RequestMapping("/api/v1/rejectedDetails/all/{id}")
-	public RejectedDetails getRejectedDetails(@PathVariable String id) {
+	public RejectedDetails getRejectedDetails(@PathVariable long id) {
 		 return rejectedDetailsService.getRejectedDetails(id);
 	}
 	
@@ -39,7 +39,7 @@ public class RejectedDetailsController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/rejectedDetails/{id}")
-	public void deleteRejectedDetails(@PathVariable String id) {
+	public void deleteRejectedDetails(@PathVariable long id) {
 		rejectedDetailsService.deleteRejectedDetails(id);
  	}
 

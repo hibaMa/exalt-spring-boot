@@ -24,8 +24,8 @@ public class PressMediaService {
 		 return pressMedias;
 	}
 	
-	public PressMedia getPressMedia(String id) {
-		return pressMediaRepository.findById(id).get();
+	public PressMedia getPressMedia(long id) {
+		return pressMediaRepository.findById(id);
 	}
 	
 	public void addPressMedia(PressMedia pressMedia) {
@@ -37,7 +37,7 @@ public class PressMediaService {
 	}
 
 	
-	public void deletePressMedia(String id) {
+	public void deletePressMedia(long id) {
 		pressMediaRepository.deleteById(id);
 	}
 

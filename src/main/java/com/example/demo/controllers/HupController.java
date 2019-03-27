@@ -24,7 +24,7 @@ public class HupController {
 	}
 	
 	@RequestMapping("/api/v1/hup/all/{id}")
-	public Hup getHup(@PathVariable String id) {
+	public Hup getHup(@PathVariable long id) {
 		 return hupService.getHup(id);
 	}
 	
@@ -39,7 +39,7 @@ public class HupController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/hup/{id}")
-	public void deleteHup(@PathVariable String id) {
+	public void deleteHup(@PathVariable long id) {
 		hupService.deleteHup(id);
  	}
 

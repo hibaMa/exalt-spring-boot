@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.RequestDTO;
 import com.example.demo.entities.Request;
 import com.example.demo.services.RequestService;
 
@@ -24,12 +25,12 @@ public class RequestController {
 	}
 	
 	@RequestMapping("/api/v1/request/all/{id}")
-	public Request getRequest(@PathVariable String id) {
+	public Request getRequest(@PathVariable long id) {
 		 return requestService.getRequest(id);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="/api/v1/request")
-	public void addRequest(@RequestBody Request request) {
+	public void addRequest(@RequestBody RequestDTO request) {
 		requestService.addRequest(request);
 	}
 	
@@ -39,7 +40,7 @@ public class RequestController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/request/{id}")
-	public void deleteRequest(@PathVariable String id) {
+	public void deleteRequest(@PathVariable long id) {
 		requestService.deleteRequest(id);
  	}
 

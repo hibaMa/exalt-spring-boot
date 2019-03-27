@@ -24,7 +24,7 @@ public class RequestMediaController {
 	}
 	
 	@RequestMapping("/api/v1/media/all/{id}")
-	public RequestMedia getRequestMedia(@PathVariable String id) {
+	public RequestMedia getRequestMedia(@PathVariable long id) {
 		 return requestMediaService.getRequestMedia(id);
 	}
 	
@@ -39,7 +39,7 @@ public class RequestMediaController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/media/{id}")
-	public void deleteRequestMedia(@PathVariable String id) {
+	public void deleteRequestMedia(@PathVariable long id) {
 		requestMediaService.deleteRequestMedia(id);
  	}
 

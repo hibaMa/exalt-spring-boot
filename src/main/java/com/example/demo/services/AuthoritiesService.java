@@ -24,8 +24,8 @@ public class AuthoritiesService {
 		 return authoritiesList;
 	}
 
-	public Authorities getAuthority(String id) {
- 		return authoritiesRepository.findById(id).get();
+	public Authorities getAuthority(long id) {
+ 		return authoritiesRepository.findById(id) ;
 	}
 
 	public void addAuthority(Authorities authorities) {
@@ -37,7 +37,7 @@ public class AuthoritiesService {
 
 	}
 
-	public void deleteAuthority(String id) {
+	public void deleteAuthority(long id) {
 		authoritiesRepository.deleteById(id);
 
 	}

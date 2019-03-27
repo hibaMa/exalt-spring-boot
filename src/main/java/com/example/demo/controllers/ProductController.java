@@ -24,7 +24,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/api/v1/products/all/{id}")
-	public Product getProduct(@PathVariable String id) {
+	public Product getProduct(@PathVariable long id) {
 		 return productService.getProduct(id);
 	}
 	
@@ -39,7 +39,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/products/{id}")
-	public void deleteProduct(@PathVariable String id) {
+	public void deleteProduct(@PathVariable long id) {
 		productService.deleteProduct(id);
  	}
 

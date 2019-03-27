@@ -5,14 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 public class Project {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	private String category;
 	private String description;
 	private boolean isApproved;
@@ -36,11 +34,11 @@ public class Project {
 		this.description = description;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -79,7 +77,7 @@ public class Project {
 	public Project() {
 	}
 
-	public Project(String category, String description, Long id, boolean isApproved, String name, int priority,
+	public Project(String category, String description, long id, boolean isApproved, String name, int priority,
 			int validTillWeek) {
 		super();
 		this.category = category;

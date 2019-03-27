@@ -24,7 +24,7 @@ public class PressController {
 	}
 	
 	@RequestMapping("/api/v1/presses/all/{id}")
-	public Press getPress(@PathVariable String id) {
+	public Press getPress(@PathVariable long id) {
 		 return pressService.getPress(id);
 	}
 	
@@ -39,7 +39,7 @@ public class PressController {
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/presses/{id}")
-	public void deletePress(@PathVariable String id) {
+	public void deletePress(@PathVariable long id) {
 		pressService.deletePress(id);
  	}
 

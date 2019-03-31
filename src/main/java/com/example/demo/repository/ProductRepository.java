@@ -14,4 +14,6 @@ public interface ProductRepository  extends CrudRepository<Product,String>{
 	@Transactional
 	@Modifying
 	int deleteById(long id);
+	
+	Product findByName(String name);
 }

@@ -48,5 +48,13 @@ public class RequestComponent {
 		this.name = name;
 		this.quantity = quantity;
 	}
+	
+
+	public RequestComponent(  String name ) {
+		super();
+ 
+		this.name = name;
+ ;
+	}
 
 }

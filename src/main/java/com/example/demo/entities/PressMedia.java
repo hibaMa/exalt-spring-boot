@@ -1,9 +1,12 @@
 package com.example.demo.entities;
 
+ 
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+ 
 
 @Entity
 public class PressMedia {
@@ -11,7 +14,9 @@ public class PressMedia {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String name;
+ 
 
+	
 	public long getId() {
 		return id;
 	}
@@ -28,13 +33,23 @@ public class PressMedia {
 		this.name = name;
 	}
 
+
 	public PressMedia() {
 	}
 
-	public PressMedia(long id, String name) {
+	public PressMedia(long id, String name ) {
 		super();
 		this.id = id;
 		this.name = name;
+		 
 	}
+	public PressMedia(  String name ) {
+		super();
+ 
+		this.name = name;
+	 
+	}
+
+ 
 
 }

@@ -38,4 +38,9 @@ public class Hub {
 		this.name = name;
 	}
 
+	public Hub( String name) {
+		super();
+		this.name = name;
+	}
+
 }

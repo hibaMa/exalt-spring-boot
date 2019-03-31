@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+ 
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -13,4 +14,6 @@ public interface RequestMediaRepository  extends CrudRepository<RequestMedia,Str
 	@Transactional
 	@Modifying
 	int deleteById(long id);
+	
+
  }

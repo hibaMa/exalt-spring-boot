@@ -13,4 +13,6 @@ public interface AuthoritiesRepository  extends CrudRepository<Authorities,Strin
 	@Transactional
 	@Modifying
 	int deleteById(long id);
+	
+	Authorities findByName(String name);
 }

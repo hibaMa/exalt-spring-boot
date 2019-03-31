@@ -39,4 +39,10 @@ public class Authorities {
 		this.id = id;
 		this.name = name;
 	}
+	
+
+	public Authorities(  String name) {
+		super();
+ 		this.name = name;
+	}
 }

@@ -37,5 +37,12 @@ public class PressComponent {
 		this.id = id;
 		this.name = name;
 	}
+	
+
+	public PressComponent(  String name) {
+		super();
+ 
+		this.name = name;
+	}
 
 }

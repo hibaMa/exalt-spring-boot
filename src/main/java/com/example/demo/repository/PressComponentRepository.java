@@ -13,5 +13,5 @@ public interface PressComponentRepository  extends CrudRepository<PressComponent
 	@Transactional
 	@Modifying
 	int deleteById(long id);
-
+	PressComponent findByName(String name);
 }

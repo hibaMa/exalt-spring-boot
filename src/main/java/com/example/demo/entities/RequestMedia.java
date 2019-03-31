@@ -1,9 +1,16 @@
 package com.example.demo.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class RequestMedia {
@@ -12,8 +19,12 @@ public class RequestMedia {
 	private long id;
 	private String name;
 	private int quantity;
-	private String type;
 
+	 
+	@OneToMany( cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "requestMedia_id")
+	private List<MediaTypes> types = new ArrayList<MediaTypes>();
+		
 	public long getid() {
 		return id;
 	}
@@ -38,23 +49,41 @@ public class RequestMedia {
 		this.quantity = quantity;
 	}
 
-	public String getType() {
-		return type;
+	public List<MediaTypes> getTypes() {
+		return types;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTypes(List<MediaTypes> types) {
+		this.types = types;
 	}
+
 
 	public RequestMedia() {
 	}
 
-	public RequestMedia(long id, String name, int quantity, String type) {
+	public RequestMedia(long id, String name, int quantity, List<MediaTypes> types) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
-		this.type = type;
+		this.types = types;
 	}
+	
+	public RequestMedia( String name, int quantity, List<MediaTypes> types) {
+		super();
+ 
+		this.name = name;
+		this.quantity = quantity;
+		this.types = types;
+	}
+	
+	public RequestMedia( String name,   List<MediaTypes> types) {
+		super();
+ 
+		this.name = name;
+ 
+		this.types = types;
+	}
+ 
 
 }

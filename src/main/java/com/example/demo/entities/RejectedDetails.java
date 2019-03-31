@@ -38,4 +38,9 @@ public class RejectedDetails {
 		this.id = id;
 	}
 
+	public RejectedDetails(String description) {
+		super();
+		this.description = description;
+		}
+
 }

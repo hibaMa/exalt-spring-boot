@@ -13,4 +13,6 @@ public interface HubRepository  extends CrudRepository<Hub,String>{
 	@Transactional
 	@Modifying
 	int deleteById(long id);
+	
+	Hub findByName(String name);
 }

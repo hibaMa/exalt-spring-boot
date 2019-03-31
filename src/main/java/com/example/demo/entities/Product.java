@@ -38,4 +38,10 @@ public class Product {
 		this.name = name;
 	}
 
+	public Product(  String name) {
+		super();
+ 
+		this.name = name;
+	}
+
 }

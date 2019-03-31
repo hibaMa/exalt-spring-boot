@@ -1,9 +1,13 @@
 package com.example.demo.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Project {
@@ -17,7 +21,16 @@ public class Project {
 	private String name;
 	private int priority;
 	private int validTillWeek;
+	
+	@ManyToOne
+	@JoinColumn(name = "hub_id", referencedColumnName = "id" )
+	private Hub hub;
+	
+	@OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
+	@JoinColumn(name = "product_id", referencedColumnName = "id")
+	private Product product;
 
+	
 	public String getCategory() {
 		return category;
 	}
@@ -74,19 +87,54 @@ public class Project {
 		this.validTillWeek = validTillWeek;
 	}
 
+	public Hub getHub() {
+		return hub;
+	}
+
+	public void setHub(Hub hub) {
+		this.hub = hub;
+	}
+	
+	
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	public Project() {
 	}
 
-	public Project(String category, String description, long id, boolean isApproved, String name, int priority,
-			int validTillWeek) {
+	public Project(long id, String category, String description, boolean isApproved, String name, int priority,
+			int validTillWeek, Hub hub, Product product) {
 		super();
+		this.id = id;
 		this.category = category;
 		this.description = description;
-		this.id = id;
 		this.isApproved = isApproved;
 		this.name = name;
 		this.priority = priority;
 		this.validTillWeek = validTillWeek;
+		this.hub = hub;
+		this.product = product;
 	}
+	public Project( String category ,int priority, String description,int validTillWeek, boolean isApproved, String name,
+			 Hub hub, Product product) {
+		super();
+ 
+		this.category = category;
+		this.description = description;
+		this.isApproved = isApproved;
+		this.name = name;
+		this.priority = priority;
+		this.validTillWeek = validTillWeek;
+		this.hub = hub;
+		this.product = product;
+	}
+ 
+ 
 
 }

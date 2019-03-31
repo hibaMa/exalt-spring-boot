@@ -124,4 +124,20 @@ public class User {
 		this.lastname = lastname;
 	}
 
+	public User(List<Authorities> authorities, String email, boolean enabled, String firstname, 
+			Date lastPasswordResetDate, String password, String username, String lastname) {
+		super();
+		this.authorities = authorities;
+		this.email = email;
+		this.enabled = enabled;
+		this.firstname = firstname;
+		 
+		this.lastPasswordResetDate = lastPasswordResetDate;
+		this.password = password;
+		this.username = username;
+		this.lastname = lastname;
+	}
+
+	 
+
 }

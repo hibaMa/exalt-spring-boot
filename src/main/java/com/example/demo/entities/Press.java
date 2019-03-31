@@ -21,6 +21,7 @@ public class Press {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "pressComp", joinColumns = @JoinColumn(name = "press_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "component_id", referencedColumnName = "id"))
 	private List<PressComponent> components = new ArrayList<PressComponent>();
@@ -28,15 +29,15 @@ public class Press {
 	private String description;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "hup_id", referencedColumnName = "id")
-	private Hup hup;
+	@JoinColumn(name = "hub_id", referencedColumnName = "id")
+	private Hub hub;
 
 	private String imageUrl;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "Press_id", referencedColumnName = "id")
+	@JoinColumn(name = "press_id", referencedColumnName = "id")
 	private List<PressMedia> media = new ArrayList<PressMedia>();
-
+	
 	private String name;
 	private String ph;
 	private String printCare;
@@ -58,12 +59,12 @@ public class Press {
 		this.components = components;
 	}
 
-	public Hup getHup() {
-		return hup;
+	public Hub gethub() {
+		return hub;
 	}
 
-	public void setHub(Hup hup) {
-		this.hup = hup;
+	public void setHub(Hub hub) {
+		this.hub = hub;
 	}
 
 	public List<PressMedia> getMedia() {
@@ -197,15 +198,14 @@ public class Press {
 	public Press() {
 	}
 
-	public Press(long id, List<PressComponent> components, String description, Hup hup, String imageUrl,
-			List<PressMedia> media, String name, String ph, String printCare, String serialNumber, String series,
+	public Press( String description, String imageUrl,
+			 String name, String ph, String printCare, String serialNumber, String series,
 			String software, String type, String utilityCabinet, String wh, String whLaserPower, String whMotorise,
-			String whType) {
+			String whType, Hub hub,List<PressMedia> media, List<PressComponent> components) {
 		super();
-		this.id = id;
 		this.components = components;
 		this.description = description;
-		this.hup = hup;
+		this.hub = hub;
 		this.imageUrl = imageUrl;
 		this.media = media;
 		this.name = name;

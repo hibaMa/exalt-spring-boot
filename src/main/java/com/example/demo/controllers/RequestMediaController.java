@@ -13,32 +13,34 @@ import com.example.demo.entities.RequestMedia;
 import com.example.demo.services.RequestMediaService;
 
 @RestController
+@RequestMapping("/secure/api/v1/")
+
 public class RequestMediaController {
 
 	@Autowired
 	private RequestMediaService requestMediaService;
 	
-	@RequestMapping("/api/v1/media")
+	@RequestMapping("media")
 	public List<RequestMedia> getAllRequestMedia(){
 		return requestMediaService.getAllRequestMedias();
 	}
 	
-	@RequestMapping("/api/v1/media/all/{id}")
+	@RequestMapping("media/all/{id}")
 	public RequestMedia getRequestMedia(@PathVariable long id) {
 		 return requestMediaService.getRequestMedia(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/media")
+	@RequestMapping(method=RequestMethod.POST,value="media")
 	public void addRequestMedia(@RequestBody RequestMedia requestMedia) {
 		requestMediaService.addRequestMedia(requestMedia);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/media/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="media/modify")
 	public void updateRequestMedia(@RequestBody RequestMedia requestMedia) {
 		requestMediaService.updateRequestMedia(requestMedia);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/media/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="media/{id}")
 	public void deleteRequestMedia(@PathVariable long id) {
 		requestMediaService.deleteRequestMedia(id);
  	}

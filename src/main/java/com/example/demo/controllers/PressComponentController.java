@@ -10,32 +10,34 @@ import com.example.demo.entities.PressComponent;
 import com.example.demo.services.PressComponentService;
 
 @RestController
+@RequestMapping("/secure/api/v1/")
+
 public class PressComponentController {
 
 	@Autowired
 	private PressComponentService pressComponentService;
 	
-	@RequestMapping("/api/v1/pressComponent")
+	@RequestMapping("pressComponent")
 	public List<PressComponent> getAllPressComponent(){
 		return pressComponentService.getAllPressComponents();
 	}
 	
-	@RequestMapping("/api/v1/pressComponent/all/{id}")
+	@RequestMapping("pressComponent/all/{id}")
 	public PressComponent getPressComponent(@PathVariable long id) {
 		 return pressComponentService.getPressComponent(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/pressComponent")
+	@RequestMapping(method=RequestMethod.POST,value="pressComponent")
 	public void addPressComponent(@RequestBody PressComponent pressComponent) {
 		pressComponentService.addPressComponent(pressComponent);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/pressComponent/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="pressComponent/modify")
 	public void updatePressComponent(@RequestBody PressComponent pressComponent) {
 		pressComponentService.updatePressComponent(pressComponent);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/pressComponent/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="pressComponent/{id}")
 	public void deletePressComponent(@PathVariable long id) {
 		pressComponentService.deletePressComponent(id);
  	}

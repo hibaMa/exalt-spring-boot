@@ -13,32 +13,34 @@ import com.example.demo.entities.RejectedDetails;
 import com.example.demo.services.RejectedDetailsService;
 
 @RestController
+@RequestMapping("/secure/api/v1/")
+
 public class RejectedDetailsController {
 
 	@Autowired
 	private RejectedDetailsService rejectedDetailsService;
 	
-	@RequestMapping("/api/v1/rejectedDetails")
+	@RequestMapping("rejectedDetails")
 	public List<RejectedDetails> getAllRejectedDetails(){
 		return rejectedDetailsService.getAllRejectedDetailss();
 	}
 	
-	@RequestMapping("/api/v1/rejectedDetails/all/{id}")
+	@RequestMapping("rejectedDetails/all/{id}")
 	public RejectedDetails getRejectedDetails(@PathVariable long id) {
 		 return rejectedDetailsService.getRejectedDetails(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/rejectedDetails")
+	@RequestMapping(method=RequestMethod.POST,value="rejectedDetails")
 	public void addRejectedDetails(@RequestBody RejectedDetails rejectedDetails) {
 		rejectedDetailsService.addRejectedDetails(rejectedDetails);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/rejectedDetails/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="rejectedDetails/modify")
 	public void updateRejectedDetails(@RequestBody RejectedDetails rejectedDetails) {
 		rejectedDetailsService.updateRejectedDetails(rejectedDetails);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/rejectedDetails/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="rejectedDetails/{id}")
 	public void deleteRejectedDetails(@PathVariable long id) {
 		rejectedDetailsService.deleteRejectedDetails(id);
  	}

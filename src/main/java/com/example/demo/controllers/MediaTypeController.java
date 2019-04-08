@@ -13,32 +13,34 @@ import com.example.demo.entities.MediaTypes;
 import com.example.demo.services.MediaTypeService;
  
  @RestController
+ @RequestMapping("/secure/api/v1/")
+
 public class MediaTypeController {
 	 
 	@Autowired
 	private MediaTypeService mediaTypeService;
 	
-	@RequestMapping("/api/v1/mediaType")
+	@RequestMapping("mediaType")
 	public List<MediaTypes> getAllRequest(){
 		return mediaTypeService.getAllmediaType();
 	}
 	
-	@RequestMapping("/api/v1/mediaType/all/{id}")
+	@RequestMapping("mediaType/all/{id}")
 	public MediaTypes getmediaType(@PathVariable long id) {
 		 return mediaTypeService.getmediaType(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/mediaType")
+	@RequestMapping(method=RequestMethod.POST,value="mediaType")
 	public void addmediaType(@RequestBody MediaTypes mediaType) {
 		mediaTypeService.addmediaType(mediaType);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/mediaType/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="mediaType/modify")
 	public void updatemediaType(@RequestBody MediaTypes mediaType) {
 		mediaTypeService.updatemediaType(mediaType);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/mediaType/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="mediaType/{id}")
 	public void deletemediaType(@PathVariable long id) {
 		mediaTypeService.deletemediaType(id);
  	}

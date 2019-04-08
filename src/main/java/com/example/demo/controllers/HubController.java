@@ -13,32 +13,33 @@ import com.example.demo.entities.Hub;
 import com.example.demo.services.HubService;
 
 @RestController
+@RequestMapping("/secure/api/v1/")
 public class HubController {
 
 	@Autowired
 	private HubService hubService;
 	
-	@RequestMapping("/api/v1/hub")
+	@RequestMapping("hub")
 	public List<Hub> getAllHub(){
 		return hubService.getAllHubs();
 	}
 	
-	@RequestMapping("/api/v1/hub/all/{id}")
+	@RequestMapping("hub/all/{id}")
 	public Hub getHub(@PathVariable long id) {
 		 return hubService.getHub(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/hub")
+	@RequestMapping(method=RequestMethod.POST,value="hub")
 	public void addHub(@RequestBody Hub hub) {
 		hubService.addHub(hub);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/hub/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="hub/modify")
 	public void updateHub(@RequestBody Hub hub) {
 		hubService.updateHub(hub);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/hub/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="hub/{id}")
 	public void deleteHub(@PathVariable long id) {
 		hubService.deleteHub(id);
  	}

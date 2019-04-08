@@ -13,5 +13,6 @@ public interface UserRepository  extends CrudRepository<User,String>{
 		@Transactional
 		@Modifying
 		int deleteById(long id);
+		User findByEmail(String email);
 
 }

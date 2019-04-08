@@ -13,32 +13,34 @@ import com.example.demo.entities.PressMedia;
 import com.example.demo.services.PressMediaService;
 
 @RestController
+@RequestMapping("/secure/api/v1/")
+
 public class PressMediaController {
 
 	@Autowired
 	private PressMediaService pressMediaService;
 	
-	@RequestMapping("/api/v1/pressMedia")
+	@RequestMapping("pressMedia")
 	public List<PressMedia> getAllPressMedia(){
 		return pressMediaService.getAllPressMedias();
 	}
 	
-	@RequestMapping("/api/v1/pressMedia/all/{id}")
+	@RequestMapping("pressMedia/all/{id}")
 	public PressMedia getPressMedia(@PathVariable long id) {
 		 return pressMediaService.getPressMedia(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/pressMedia")
+	@RequestMapping(method=RequestMethod.POST,value="pressMedia")
 	public void addPressMedia(@RequestBody PressMedia pressMedia) {
 		pressMediaService.addPressMedia(pressMedia);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/pressMedia/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="pressMedia/modify")
 	public void updatePressMedia(@RequestBody PressMedia pressMedia) {
 		pressMediaService.updatePressMedia(pressMedia);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/pressMedia/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="pressMedia/{id}")
 	public void deletePressMedia(@PathVariable long id) {
 		pressMediaService.deletePressMedia(id);
  	}

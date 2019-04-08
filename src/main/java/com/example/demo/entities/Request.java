@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-
 @Entity
 public class Request {
 	@Id
@@ -26,14 +25,15 @@ public class Request {
 	private int weekNumber;
 	private int priority;
 	private boolean isConsecutive;
-	private int shiftsLength;
+	private float shiftsLength;
 	private String type;
-	private boolean isArgent;
+	private boolean urgent;
 	private String testObjecteves;
-	private Date created;
+	private String created;
 	private String rejectedComment;
 	private String status;
 	private String testFileType;
+
 	@OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "owner_id", referencedColumnName = "id")
 	private User owner;
@@ -50,27 +50,27 @@ public class Request {
 	@JoinColumn(name = "product_id", referencedColumnName = "id")
 	private Product product = new Product();
 
-	@ManyToMany( fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "req_comp", joinColumns = @JoinColumn(name = "request_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "comp_id", referencedColumnName = "id"))
 	private List<RequestComponent> components = new ArrayList<RequestComponent>();
 
-	@ManyToMany( fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "req_press", joinColumns = @JoinColumn(name = "request_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "press_id", referencedColumnName = "id"))
 	private List<Press> presses = new ArrayList<Press>();
 
-	@OneToMany( orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(orphanRemoval = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "request_id")
-	private List<RequestMedia> media = new ArrayList<RequestMedia>();
+	private List<MediaTypes> mediaTypes = new ArrayList<MediaTypes>();
 //    (fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@ManyToOne
 	@JoinColumn(name = "hub_id", referencedColumnName = "id")
 	private Hub hub;
 
-	public Date getCreated() {
+	public String getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(String created) {
 		this.created = created;
 	}
 
@@ -130,13 +130,7 @@ public class Request {
 		this.presses = presses;
 	}
 
-	public List<RequestMedia> getMedia() {
-		return media;
-	}
-
-	public void setMedia(List<RequestMedia> media) {
-		this.media = media;
-	}
+ 
 
 	public Project getProject() {
 		return project;
@@ -222,11 +216,11 @@ public class Request {
 		this.isConsecutive = isConsecutive;
 	}
 
-	public int getShiftsLength() {
+	public float getShiftsLength() {
 		return shiftsLength;
 	}
 
-	public void setShiftsLength(int shiftsLength) {
+	public void setShiftsLength(float shiftsLength) {
 		this.shiftsLength = shiftsLength;
 	}
 
@@ -238,14 +232,17 @@ public class Request {
 		this.type = type;
 	}
 
-	public boolean isArgent() {
-		return isArgent;
+ 
+
+	public boolean isUrgent() {
+		return urgent;
 	}
 
-	public void setArgent(boolean isArgent) {
-		this.isArgent = isArgent;
+	public void setUrgent(boolean urgent) {
+		this.urgent = urgent;
 	}
-
+ 
+	 
 	public String getTestObjecteves() {
 		return testObjecteves;
 	}
@@ -254,11 +251,19 @@ public class Request {
 		this.testObjecteves = testObjecteves;
 	}
 
+	public List<MediaTypes> getMediaTypes() {
+		return mediaTypes;
+	}
+
+	public void setMediaTypes(List<MediaTypes> mediaTypes) {
+		this.mediaTypes = mediaTypes;
+	}
+
 	public Request(long id, String comment, String name, String description, int weekNumber, int priority,
-			boolean isConsecutive, int shiftsLength, String type, boolean isArgent, String testObjecteves, Date created,
+			boolean isConsecutive, float shiftsLength, String type, boolean urgent, String testObjecteves, String created,
 			String rejectedComment, String status, String testFileType, User owner, RejectedDetails rejectedDetails,
 			Project project, Product product, List<RequestComponent> components, List<Press> presses,
-			List<RequestMedia> media, Hub hub) {
+			List<MediaTypes> mediaTypes, Hub hub) {
 		super();
 		this.id = id;
 		this.comment = comment;
@@ -269,7 +274,7 @@ public class Request {
 		this.isConsecutive = isConsecutive;
 		this.shiftsLength = shiftsLength;
 		this.type = type;
-		this.isArgent = isArgent;
+		this.urgent = urgent;
 		this.testObjecteves = testObjecteves;
 		this.created = created;
 		this.rejectedComment = rejectedComment;
@@ -281,8 +286,12 @@ public class Request {
 		this.product = product;
 		this.components = components;
 		this.presses = presses;
-		this.media = media;
+		this.mediaTypes = mediaTypes;
 		this.hub = hub;
 	}
+
+ 
+
+ 
 
 }

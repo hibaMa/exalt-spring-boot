@@ -13,32 +13,34 @@ import com.example.demo.entities.RequestComponent;
 import com.example.demo.services.RequestComponentService;
 
 @RestController
+@RequestMapping("/secure/api/v1/")
+
 public class RequestComponentController {
 
 	@Autowired
 	private RequestComponentService requestComponentService;
 	
-	@RequestMapping("/api/v1/components")
+	@RequestMapping("components")
 	public List<RequestComponent> getAllRequestComponent(){
 		return requestComponentService.getAllRequestComponents();
 	}
 	
-	@RequestMapping("/api/v1/components/all/{id}")
+	@RequestMapping("components/all/{id}")
 	public RequestComponent getRequestComponent(@PathVariable long id) {
 		 return requestComponentService.getRequestComponent(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/components")
+	@RequestMapping(method=RequestMethod.POST,value="components")
 	public void addRequestComponent(@RequestBody RequestComponent requestComponent) {
 		requestComponentService.addRequestComponent(requestComponent);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/components/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="components/modify")
 	public void updateRequestComponent(@RequestBody RequestComponent requestComponent) {
 		requestComponentService.updateRequestComponent(requestComponent);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/components/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="components/{id}")
 	public void deleteRequestComponent(@PathVariable long id) {
 		requestComponentService.deleteRequestComponent(id);
  	}

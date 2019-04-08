@@ -13,32 +13,33 @@ import com.example.demo.entities.Press;
 import com.example.demo.services.PressService;
 
 @RestController
+@RequestMapping("/secure/api/v1/")
 public class PressController {
 
 	@Autowired
 	private PressService pressService;
 	
-	@RequestMapping("/api/v1/presses")
+	@RequestMapping("presses")
 	public List<Press> getAllPress(){
 		return pressService.getAllPress();
 	}
 	
-	@RequestMapping("/api/v1/presses/all/{id}")
+	@RequestMapping("presses/all/{id}")
 	public Press getPress(@PathVariable long id) {
 		 return pressService.getPress(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/presses")
+	@RequestMapping(method=RequestMethod.POST,value="presses")
 	public void addPress(@RequestBody Press press) {
 		pressService.addPress(press);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/presses/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="presses/modify")
 	public void updatePress(@RequestBody Press press) {
 		pressService.updatePress(press);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/presses/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="presses/{id}")
 	public void deletePress(@PathVariable long id) {
 		pressService.deletePress(id);
  	}

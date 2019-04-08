@@ -11,33 +11,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Authorities;
  import com.example.demo.services.AuthoritiesService;
- @RestController
+@RestController
+@RequestMapping("/secure/api/v1/")
 public class AuthoritiesController {
 	 
 	@Autowired
 	private AuthoritiesService authoritiesService;
 	
-	@RequestMapping("/api/v1/authorities")
+	@RequestMapping("authorities")
 	public List<Authorities> getAllRequest(){
 		return authoritiesService.getAllAuthorities();
 	}
 	
-	@RequestMapping("/api/v1/authorities/all/{id}")
+	@RequestMapping("authorities/all/{id}")
 	public Authorities getAuthority(@PathVariable long id) {
 		 return authoritiesService.getAuthority(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/authorities")
+	@RequestMapping(method=RequestMethod.POST,value="authorities")
 	public void addAuthority(@RequestBody Authorities authorities) {
 		authoritiesService.addAuthority(authorities);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/authorities/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="authorities/modify")
 	public void updateAuthority(@RequestBody Authorities authorities) {
 		authoritiesService.updateAuthority(authorities);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/authorities/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="authorities/{id}")
 	public void deleteAuthority(@PathVariable long id) {
 		authoritiesService.deleteAuthority(id);
  	}

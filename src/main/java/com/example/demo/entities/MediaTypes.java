@@ -1,11 +1,15 @@
 package com.example.demo.entities;
 
-
+ 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
- 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+  
 
 @Entity
 public class MediaTypes {
@@ -15,7 +19,10 @@ public class MediaTypes {
 	private long id;
 	private String name;
 	
-
+	@ManyToOne( cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+	@JoinColumn(name = "requestMedia_id")
+	private  RequestMedia  media = new  RequestMedia();
+	
 	public long getId() {
 		return id;
 	}
@@ -31,27 +38,33 @@ public class MediaTypes {
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public RequestMedia getMedia() {
+		return media;
 	}
 
- 
-	public MediaTypes() {}
 
-	public MediaTypes(long id, String name ) {
+	public void setMedia(RequestMedia media) {
+		this.media = media;
+	}
+
+	
+
+	public MediaTypes(long id, String name, RequestMedia media) {
 		super();
 		this.id = id;
 		this.name = name;
- 
+		this.media = media;
 	}
- 
 
-	public MediaTypes(  String name ) {
+	public MediaTypes(  String name, RequestMedia media) {
 		super();
- 
 		this.name = name;
-	 
+		this.media = media;
 	}
+
+	public MediaTypes() {}
+
+ 
  
 
 }

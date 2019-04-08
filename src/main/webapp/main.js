@@ -61,7 +61,7 @@ module.exports = ".mat-badge-content{font-weight:600;font-size:12px;font-family:
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<!--elapses ... if text to long-->\r\n<!--if there is many parameter put them in separate class-->\r\n<!-- map find ...-->\r\n<!---->\r\n<div class=\"addRequest\">\r\n<div class=\"forms-container\">\r\n  <div class=\"formHeader\">\r\n    <div class=\"formTitle\">New Press Request</div>\r\n    <div class=\"close\" (click)=\"closeAddRequest()\">x</div>\r\n  </div>\r\n  <form-wizard >\r\n    <!--step1-->\r\n    <wizard-step [title]=\"'Basic info'\"  >\r\n\r\n      <div class=\"first-form\">\r\n        <div class=\"urgent\">\r\n          <span class=\"urgent-text\">Urgent submission during this week?</span>\r\n          <mat-slide-toggle name=\"isUrgent\" [(ngModel)]=\"isUrgent\"></mat-slide-toggle>\r\n        </div>\r\n\r\n        <div class=\"radioContainer\">\r\n          <div class=\"type\">Type</div>\r\n\r\n          <div class=\"TestRadioCont\" (click)=\"toggleTest()\">\r\n            <input type=\"checkbox\" [checked]=\"isTestChecked\">\r\n            <div class=\"TestRadio\" [class.checked]=\"isTestChecked\" >\r\n              <div class=\"checkedTestRadio\" *ngIf=\"isTestChecked\"></div>\r\n            </div>\r\n            <div class=\"title\">Test</div>\r\n          </div>\r\n\r\n          <div class=\"LabRadioCont\" (click)=\"toggleLab()\">\r\n            <input type=\"checkbox\" [checked]=\"isLabChecked\">\r\n            <div class=\"LabRadio\" [class.checked]=\"isLabChecked\" >\r\n              <div class=\"checkedLabRadio\" *ngIf=\"isLabChecked\"></div>\r\n            </div>\r\n            <div class=\"title\">Lab</div>\r\n          </div>\r\n        </div>\r\n\r\n        <form class=\"inputsForm\">\r\n          <mat-form-field>\r\n            <input matInput name=\"testName\"   type=\"text\" placeholder=\"Test Name\" required minlength=\"2\" [(ngModel)]=\"Test_Name\">\r\n            <!--<mat-hint class=\"errorTxt\" >invalid feild </mat-hint>-->\r\n          </mat-form-field>\r\n          <div></div>\r\n          <mat-form-field>\r\n            <select matNativeControl [(ngModel)]=\"Product_NameID\" name=\"Product_NameID\" placeholder=\"Product Name\">\r\n              <option style=\"display:none;\"></option>\r\n              <option  *ngFor=\"let product of productsArray\" [value]=\"product.id\">{{product.name}}</option>\r\n          </select>\r\n            <!--<mat-hint class=\"errorTxt\">invalid feild </mat-hint>-->\r\n          </mat-form-field>\r\n          <mat-form-field>\r\n            <select matNativeControl [(ngModel)]=\"Project_NameID\" name=\"Project_NameID\" placeholder=\"Project Name\">\r\n              <option style=\"display:none;\"></option>\r\n            <option *ngFor=\"let project of projectsArray\" [value]=\"project.id\">{{project.name}}</option>\r\n          </select>\r\n            <!--<mat-hint class=\"errorTxt\">invalid feild </mat-hint>-->\r\n          </mat-form-field>\r\n          <mat-form-field>\r\n            <input  matInput type=\"number\" [disabled]=\"isHalfShift\" name=\"shift\" [(ngModel)]=\"shift\"  min=\"0\">\r\n            <!--<mat-hint class=\"errorTxt\">invalid feild </mat-hint>-->\r\n          </mat-form-field>\r\n          <div class=\"halfShift\" >\r\n            <span class=\"halfShiftText\" >Half shift</span>\r\n            <mat-slide-toggle [(ngModel)]=\"isHalfShift\" name=\"isHalfShift\" (change)=\"HalfShiftChange()\"></mat-slide-toggle>\r\n          </div>\r\n        </form>\r\n\r\n        <app-slider></app-slider>\r\n\r\n      </div>\r\n\r\n      <button class=\"cancel\" (click)=\"closeAddRequest()\">CANCEL</button>\r\n\r\n    </wizard-step>\r\n    <!--step2-->\r\n    <wizard-step [title]=\"'Request details'\" >\r\n      <div class=\"RequestDetails\">\r\n        <mat-form-field><input matInput type=\"text\" placeholder=\"Test Objectives\" name=\"Test_Objectives\" [(ngModel)]=\"Test_Objectives\"></mat-form-field>\r\n\r\n        <div class=\"requestMedia\">\r\n          <span class=\"title\">Request media</span>\r\n          <div class=\"add\">\r\n            <span (click)=\"requestMediaPopupShow()\">+ &nbsp;&nbsp; Add</span>\r\n            <div class=\"addedContent\">\r\n              <div class=\"addedMedia\" *ngFor=\"let addedMedia of requestMedia;let i = index\">\r\n                <div class=\"info\">{{addedMedia.media_name}} &nbsp; (Qty : {{addedMedia.media_Quantity}} {{addedMedia.media_type}})</div>\r\n                <div class=\"sittings\">\r\n                  <i class=\"fa fa-pencil\" aria-hidden=\"true\" (click)=\"displayRequestEditPopup(i)\"></i>\r\n                  <div class=\"popup editPopup\" *ngIf=\"requestMediaEditPopup[i]==true\">\r\n                    <mat-form-field>\r\n                      <select matNativeControl  (input)=\"editMedia_name=$event.target.value\" name=\"media\" [ngModel]=\"addedMedia.id\" placeholder=\"media name\" required (change)=\"modifySelectedMediaTypes($event.target)\">\r\n                        <option [value]=\"media.id\" *ngFor=\"let media of mediaArray\" >{{media.name}}</option>\r\n                      </select>\r\n                    </mat-form-field>\r\n                    <div class=\"media_info\">\r\n                      <mat-form-field>\r\n                        <input matInput  type=\"number\" placeholder=\"Quantity\"  name=\"editMedia_Quantity\" [(ngModel)]=\"editMedia_Quantity\" required min=\"0\">\r\n                      </mat-form-field>\r\n                      <mat-form-field>\r\n                        <select matNativeControl  (input)=\"editMedia_type=$event.target.value\"  name=\"mediaID\" [ngModel]=\"addedMedia.mediaID\" placeholder=\"media type\" required >\r\n                          <option style=\"display:none;\"></option>\r\n                          <option [value]=\"mediaType.id\" *ngFor=\"let mediaType of selectedMediaTypes\">{{mediaType.name}}</option>\r\n                        </select>\r\n                      </mat-form-field>\r\n                    </div>\r\n                    <div class=\"buttons\">\r\n                      <button class=\"cancelBtn\" (click)=\"requestMediaEditPopupHide(i)\">CANCEL</button>\r\n                      <button class=\"done\" (click)=\"editRequestMedia(i)\" >Edit</button>\r\n\r\n                    </div>\r\n\r\n                  </div>\r\n                  <i class=\"fa fa-times\" aria-hidden=\"true\" (click)=\"deleteMediaByIndex(i)\"></i>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"popup\">\r\n              <mat-form-field>\r\n                <select matNativeControl [(ngModel)]=\"media_nameID\" placeholder=\"media name\" required (change)=\"modifySelectedMediaTypes($event.target)\">\r\n                  <option style=\"display:none;\"></option>\r\n                  <option [value]=\"media.id\" *ngFor=\"let media of mediaArray\">{{media.name}}</option>\r\n                </select>\r\n              </mat-form-field>\r\n              <div class=\"media_info\">\r\n                <mat-form-field>\r\n                  <input matInput  type=\"number\" placeholder=\"Quantity\"  [(ngModel)]=\"media_Quantity\" required  min=\"0\">\r\n                </mat-form-field>\r\n                <mat-form-field>\r\n                  <select matNativeControl [(ngModel)]=\"media_typeID\" placeholder=\"media type\" required >\r\n                    <option style=\"display:none;\"></option>\r\n                    <option [value]=\"mediaType.id\" *ngFor=\"let mediaType of selectedMediaTypes\">{{mediaType.name}}</option>\r\n                  </select>\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"buttons\">\r\n                <button class=\"cancelBtn\" (click)=\"requestMediaPopupHide()\">CANCEL</button>\r\n                <button class=\"done\" (click)=\"addRequestMedia()\" >Done</button>\r\n\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"ReplaceComponent\">\r\n          <span class=\"title\">Replace Component</span>\r\n          <div class=\"add\">\r\n            <span (click)=\"replaceComponentPopupShow()\">+ &nbsp;&nbsp; Add</span>\r\n            <div class=\"addedContent\" >\r\n              <div class=\"addedComp\" *ngFor=\"let addedComp of replaceComponent;let i = index\">\r\n\r\n              <div class=\"info\">{{addedComp.compo_name}} &nbsp; (Num : {{addedComp.compo_num}})</div>\r\n                <div class=\"sittings\">\r\n                  <i class=\"fa fa-pencil\" aria-hidden=\"true\" (click)=\"displayCompEditPopup(i)\"></i>\r\n                  <div class=\"popup editPopup\" *ngIf=\"compEditPopupViability[i]==true\">\r\n                    <mat-form-field>\r\n                      <select matNativeControl (input)=\"editComponent_name=$event.target.value\" [ngModel]=\"addedComp.id\"   placeholder=\"Component name\" required >\r\n                        <option [value]=\"component.id\" *ngFor=\"let component of componentArray\">{{component.name}}</option>\r\n                      </select>\r\n                    </mat-form-field>\r\n                    <div class=\"media_info\">\r\n                      <mat-form-field>\r\n                        <input matInput  type=\"number\" placeholder=\"Num\"  [(ngModel)]=\"editComponent_Num\"  required min=\"0\">\r\n                      </mat-form-field>\r\n                    </div>\r\n                    <div class=\"buttons\">\r\n                      <button class=\"cancelBtn\" (click)=\"replaceComponentEditPopupHide(i)\">CANCEL</button>\r\n                      <button class=\"done\" (click)=\"editComponent(i)\" >Edit</button>\r\n                    </div>\r\n\r\n                  </div>\r\n                  <i class=\"fa fa-times\" aria-hidden=\"true\" (click)=\"deletecompByIndex(i)\"></i>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"popup\">\r\n              <mat-form-field>\r\n                <select matNativeControl [(ngModel)]=\"Component_name\" placeholder=\"Component name\" required>\r\n                  <option style=\"display:none;\"></option>\r\n                  <option [value]=\"component.id\" *ngFor=\"let component of componentArray\">{{component.name}}</option>\r\n                </select>\r\n              </mat-form-field>\r\n              <div class=\"media_info\">\r\n                <mat-form-field>\r\n                  <input matInput  type=\"number\" placeholder=\"Num\"  [(ngModel)]=\"Component_Num\" required min=\"0\">\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"buttons\">\r\n                <button class=\"cancelBtn\" (click)=\"replaceComponentPopupHide()\">CANCEL</button>\r\n                <button class=\"done\" (click)=\"addReplaceComponentMedia()\" >Done</button>\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n\r\n        <mat-form-field><input matInput type=\"text\" placeholder=\"Additional Comment\"  [(ngModel)]=\"Additional_Comment\"></mat-form-field>\r\n      </div>\r\n      <app-slider ></app-slider>\r\n\r\n\r\n    </wizard-step>\r\n    <!--step3-->\r\n    <wizard-step [title]=\"'Test plan'\" >\r\n      <div class=\"optionalText\">Locate and upload your test plan document (optional)</div>\r\n      <div id=\"fileBtns\">\r\n        <app-upload-file *ngFor=\"let file of filesToUpload,let i = index\" ></app-upload-file>\r\n      </div>\r\n      <div class=\"addFile\" (click)=\"addFileBtn()\"><div class=\"add\" ><span>+</span></div><span class=\"text\">Add File</span></div>\r\n      <!--<div (click)=\"submitRequest()\">Done</div>-->\r\n      <app-slider></app-slider>\r\n    </wizard-step>\r\n    <!--step4-->\r\n    <wizard-step [title]=\"'Submit'\" (onComplete)=\"submitRequest()\">\r\n          <div class=\"submittedData\">\r\n          <div><span>isUrgent </span><span>{{isUrgent}}</span></div>\r\n          <div><span>Product_Name </span><span *ngIf=\"Product_NameID\">{{getProductByID(Product_NameID).name}}</span></div>\r\n          <div><span>Project_Name</span><span *ngIf=\"Project_NameID\"> {{getProjectByID(Project_NameID).name}}</span></div>\r\n          <div><span>Test_Name </span><span>{{Test_Name}}</span></div>\r\n          <div><span>Test_type </span><span>{{isLabChecked?\"Lab\":\"Test\"}}</span></div>\r\n          <div><span>shift</span> <span>{{shift}}</span></div>\r\n          <div><span>Test_Objectives </span><span>{{Test_Objectives}}</span></div>\r\n          <div *ngIf=\"Additional_Comment !=''\"><span>Additional_Comment</span><span> {{Additional_Comment}}</span></div>\r\n          <div><span>request Media Num </span><span>{{requestMedia.length}}</span></div>\r\n          <div><span>replace Component Num </span><span>{{replaceComponent.length}}</span></div>\r\n        </div>\r\n    </wizard-step>\r\n  </form-wizard>\r\n</div>\r\n</div>\r\n\r\n\r\n"
+module.exports = "\r\n<!--elapses ... if text to long-->\r\n<!--if there is many parameter put them in separate class-->\r\n<!-- map find ...-->\r\n<!---->\r\n<div class=\"addRequest\">\r\n<div class=\"forms-container\">\r\n  <div class=\"formHeader\">\r\n    <div class=\"formTitle\">New Press Request</div>\r\n    <div class=\"close\" (click)=\"closeAddRequest()\">x</div>\r\n  </div>\r\n  <form-wizard >\r\n    <!--step1-->\r\n    <wizard-step [title]=\"'Basic info'\"  >\r\n\r\n      <div class=\"first-form\">\r\n        <div class=\"urgent\">\r\n          <span class=\"urgent-text\">Urgent submission during this week?</span>\r\n          <mat-slide-toggle name=\"urgent\" [(ngModel)]=\"urgent\"></mat-slide-toggle>\r\n        </div>\r\n\r\n        <div class=\"radioContainer\">\r\n          <div class=\"type\">Type</div>\r\n\r\n          <div class=\"TestRadioCont\" (click)=\"toggleTest()\">\r\n            <input type=\"checkbox\" [checked]=\"isTestChecked\">\r\n            <div class=\"TestRadio\" [class.checked]=\"isTestChecked\" >\r\n              <div class=\"checkedTestRadio\" *ngIf=\"isTestChecked\"></div>\r\n            </div>\r\n            <div class=\"title\">Test</div>\r\n          </div>\r\n\r\n          <div class=\"LabRadioCont\" (click)=\"toggleLab()\">\r\n            <input type=\"checkbox\" [checked]=\"isLabChecked\">\r\n            <div class=\"LabRadio\" [class.checked]=\"isLabChecked\" >\r\n              <div class=\"checkedLabRadio\" *ngIf=\"isLabChecked\"></div>\r\n            </div>\r\n            <div class=\"title\">Lab</div>\r\n          </div>\r\n        </div>\r\n\r\n        <form class=\"inputsForm\">\r\n          <mat-form-field>\r\n            <input matInput name=\"testName\"   type=\"text\" placeholder=\"Test Name\" required minlength=\"2\" [(ngModel)]=\"Test_Name\">\r\n            <!--<mat-hint class=\"errorTxt\" >invalid feild </mat-hint>-->\r\n          </mat-form-field>\r\n          <div></div>\r\n\r\n          <mat-form-field>\r\n            <select matNativeControl [(ngModel)]=\"Project_NameID\" name=\"Project_NameID\" placeholder=\"Project Name\" (change)=\"fillProductArray($event.target)\">\r\n              <option style=\"display:none;\"></option>\r\n            <option    *ngFor=\"let project of projectsArray\" [value]=\"project.id\">{{project.name}}</option>\r\n            </select>\r\n            <!--<mat-hint class=\"errorTxt\">invalid feild </mat-hint>-->\r\n          </mat-form-field>\r\n\r\n          <mat-form-field>\r\n            <select matNativeControl [(ngModel)]=\"Product_NameID\" name=\"Product_NameID\" placeholder=\"Product Name\">\r\n              <option style=\"display:none;\"></option>\r\n              <option  *ngFor=\"let product of productsArray\" [value]=\"product.id\">{{product.name}}</option>\r\n            </select>\r\n            <!--<mat-hint class=\"errorTxt\">invalid feild </mat-hint>-->\r\n          </mat-form-field>\r\n          <mat-form-field>\r\n            <input  matInput type=\"number\" [disabled]=\"isHalfShift\" name=\"shift\" [(ngModel)]=\"shift\"  min=\"0\">\r\n            <!--<mat-hint class=\"errorTxt\">invalid feild </mat-hint>-->\r\n          </mat-form-field>\r\n          <div class=\"halfShift\" >\r\n            <span class=\"halfShiftText\" >Half shift</span>\r\n            <mat-slide-toggle [(ngModel)]=\"isHalfShift\" name=\"isHalfShift\" (change)=\"HalfShiftChange()\"></mat-slide-toggle>\r\n          </div>\r\n        </form>\r\n\r\n        <app-slider></app-slider>\r\n\r\n      </div>\r\n\r\n      <button class=\"cancel\" (click)=\"closeAddRequest()\">CANCEL</button>\r\n\r\n    </wizard-step>\r\n    <!--step2-->\r\n    <wizard-step [title]=\"'Request details'\" >\r\n      <div class=\"RequestDetails\">\r\n        <mat-form-field><input matInput type=\"text\" placeholder=\"Test Objectives\" name=\"Test_Objectives\" [(ngModel)]=\"Test_Objectives\"></mat-form-field>\r\n\r\n        <div class=\"requestMedia\">\r\n          <span class=\"title\">Request media</span>\r\n          <div class=\"add\">\r\n            <span (click)=\"requestMediaPopupShow()\">+ &nbsp;&nbsp; Add</span>\r\n            <div class=\"addedContent\">\r\n              <div class=\"addedMedia\" *ngFor=\"let addedMedia of requestMedia;let i = index\">\r\n                <div class=\"info\">{{addedMedia.media_name}} &nbsp; (Qty : {{addedMedia.media_Quantity}} {{addedMedia.media_type}})</div>\r\n                <div class=\"sittings\">\r\n                  <i class=\"fa fa-pencil\" aria-hidden=\"true\" (click)=\"displayRequestEditPopup(i)\"></i>\r\n                  <div class=\"popup editPopup\" *ngIf=\"requestMediaEditPopup[i]==true\">\r\n                    <mat-form-field>\r\n                      <select matNativeControl  (input)=\"editMedia_name=$event.target.value\" name=\"media\" [ngModel]=\"addedMedia.id\" placeholder=\"media name\" required (change)=\"modifySelectedMediaTypes($event.target)\">\r\n                        <option [value]=\"media.id\" *ngFor=\"let media of mediaArray\" >{{media.name}}</option>\r\n                      </select>\r\n                    </mat-form-field>\r\n                    <div class=\"media_info\">\r\n                      <mat-form-field>\r\n                        <input matInput  type=\"number\" placeholder=\"Quantity\"  name=\"editMedia_Quantity\" [(ngModel)]=\"editMedia_Quantity\" required min=\"0\">\r\n                      </mat-form-field>\r\n                      <mat-form-field>\r\n                        <select matNativeControl  (input)=\"editMedia_type=$event.target.value\"  name=\"mediaID\" [ngModel]=\"addedMedia.mediaID\" placeholder=\"media type\" required >\r\n                          <option style=\"display:none;\"></option>\r\n                          <option [value]=\"mediaType.id\" *ngFor=\"let mediaType of selectedMediaTypes\">{{mediaType.name}}</option>\r\n                        </select>\r\n                      </mat-form-field>\r\n                    </div>\r\n                    <div class=\"buttons\">\r\n                      <button class=\"cancelBtn\" (click)=\"requestMediaEditPopupHide(i)\">CANCEL</button>\r\n                      <button class=\"done\" (click)=\"editRequestMedia(i)\" >Edit</button>\r\n\r\n                    </div>\r\n\r\n                  </div>\r\n                  <i class=\"fa fa-times\" aria-hidden=\"true\" (click)=\"deleteMediaByIndex(i)\"></i>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"popup\">\r\n              <mat-form-field>\r\n                <select matNativeControl name=\"media_nameID\" [(ngModel)]=\"media_nameID\" placeholder=\"media name\" required (change)=\"modifySelectedMediaTypes($event.target)\">\r\n                  <option style=\"display:none;\"></option>\r\n                  <option [value]=\"media.id\" *ngFor=\"let media of mediaArray\">{{media.name}}</option>\r\n                </select>\r\n              </mat-form-field>\r\n              <div class=\"media_info\">\r\n                <mat-form-field>\r\n                  <input matInput  type=\"number\" placeholder=\"Quantity\" name=\"media_Quantity\" [(ngModel)]=\"media_Quantity\" required  min=\"0\">\r\n                </mat-form-field>\r\n                <mat-form-field>\r\n                  <select matNativeControl name=\"media_typeID\" [(ngModel)]=\"media_typeID\" placeholder=\"media type\" required >\r\n                    <option style=\"display:none;\"></option>\r\n                    <option [value]=\"mediaType.id\" *ngFor=\"let mediaType of selectedMediaTypes\">{{mediaType.name}}</option>\r\n                  </select>\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"buttons\">\r\n                <button class=\"cancelBtn\" (click)=\"requestMediaPopupHide()\">CANCEL</button>\r\n                <button class=\"done\" (click)=\"addRequestMedia()\" >Done</button>\r\n\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"ReplaceComponent\">\r\n          <span class=\"title\">Replace Component</span>\r\n          <div class=\"add\">\r\n            <span (click)=\"replaceComponentPopupShow()\">+ &nbsp;&nbsp; Add</span>\r\n            <div class=\"addedContent\" >\r\n              <div class=\"addedComp\" *ngFor=\"let addedComp of replaceComponent;let i = index\">\r\n\r\n              <div class=\"info\">{{addedComp.compo_name}} &nbsp; (Num : {{addedComp.compo_num}})</div>\r\n                <div class=\"sittings\">\r\n                  <i class=\"fa fa-pencil\" aria-hidden=\"true\" (click)=\"displayCompEditPopup(i)\"></i>\r\n                  <div class=\"popup editPopup\" *ngIf=\"compEditPopupViability[i]==true\">\r\n                    <mat-form-field>\r\n                      <select matNativeControl (input)=\"editComponent_name=$event.target.value\" name=\"addedComp\" [ngModel]=\"addedComp.id\"   placeholder=\"Component name\" required >\r\n                        <option [value]=\"component.id\" *ngFor=\"let component of componentArray\">{{component.name}}</option>\r\n                      </select>\r\n                    </mat-form-field>\r\n                    <div class=\"media_info\">\r\n                      <mat-form-field>\r\n                        <input matInput  type=\"number\" placeholder=\"Num\" name=\"editComponent_Num\" [(ngModel)]=\"editComponent_Num\"  required min=\"0\">\r\n                      </mat-form-field>\r\n                    </div>\r\n                    <div class=\"buttons\">\r\n                      <button class=\"cancelBtn\" (click)=\"replaceComponentEditPopupHide(i)\">CANCEL</button>\r\n                      <button class=\"done\" (click)=\"editComponent(i)\" >Edit</button>\r\n                    </div>\r\n\r\n                  </div>\r\n                  <i class=\"fa fa-times\" aria-hidden=\"true\" (click)=\"deletecompByIndex(i)\"></i>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"popup\">\r\n              <mat-form-field>\r\n                <select matNativeControl name=\"Component_name\" [(ngModel)]=\"Component_name\" placeholder=\"Component name\" required>\r\n                  <option style=\"display:none;\"></option>\r\n                  <option [value]=\"component.id\" *ngFor=\"let component of componentArray\">{{component.name}}</option>\r\n                </select>\r\n              </mat-form-field>\r\n              <div class=\"media_info\">\r\n                <mat-form-field>\r\n                  <input matInput  type=\"number\" placeholder=\"Num\"  name=\"Component_Num\" [(ngModel)]=\"Component_Num\" required min=\"0\">\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"buttons\">\r\n                <button class=\"cancelBtn\" (click)=\"replaceComponentPopupHide()\">CANCEL</button>\r\n                <button class=\"done\" (click)=\"addReplaceComponentMedia()\" >Done</button>\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n\r\n        <mat-form-field><input matInput type=\"text\" placeholder=\"Additional Comment\" name=\"Additional_Comment\"  [(ngModel)]=\"Additional_Comment\"></mat-form-field>\r\n      </div>\r\n      <app-slider ></app-slider>\r\n\r\n\r\n    </wizard-step>\r\n    <!--step3-->\r\n    <wizard-step [title]=\"'Test plan'\" >\r\n      <div class=\"optionalText\">Locate and upload your test plan document (optional)</div>\r\n      <div id=\"fileBtns\">\r\n        <app-upload-file *ngFor=\"let file of filesToUpload,let i = index\" ></app-upload-file>\r\n      </div>\r\n      <div class=\"addFile\" (click)=\"addFileBtn()\"><div class=\"add\" ><span>+</span></div><span class=\"text\">Add File</span></div>\r\n      <!--<div (click)=\"submitRequest()\">Done</div>-->\r\n      <app-slider></app-slider>\r\n    </wizard-step>\r\n    <!--step4-->\r\n    <wizard-step [title]=\"'Submit'\" (onComplete)=\"submitRequest()\">\r\n          <div class=\"submittedData\">\r\n          <div><span>urgent </span><span>{{urgent}}</span></div>\r\n          <div><span>Product_Name </span><span *ngIf=\"Product_NameID\">{{getProductByID(Product_NameID).name}}</span></div>\r\n          <div><span>Project_Name</span><span *ngIf=\"Project_NameID\"> {{getProjectByID(Project_NameID).name}}</span></div>\r\n          <div><span>Test_Name </span><span>{{Test_Name}}</span></div>\r\n          <div><span>Test_type </span><span>{{isLabChecked?\"Lab\":\"Test\"}}</span></div>\r\n          <div><span>shift</span> <span>{{shift}}</span></div>\r\n          <div><span>Test_Objectives </span><span>{{Test_Objectives}}</span></div>\r\n          <div *ngIf=\"Additional_Comment !=''\"><span>Additional_Comment</span><span> {{Additional_Comment}}</span></div>\r\n          <div><span>request Media Num </span><span>{{requestMedia.length}}</span></div>\r\n          <div><span>replace Component Num </span><span>{{replaceComponent.length}}</span></div>\r\n        </div>\r\n    </wizard-step>\r\n  </form-wizard>\r\n</div>\r\n</div>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -97,10 +97,12 @@ var AddRequestComponent = /** @class */ (function () {
         this.productsArray = [];
         this.projectsArray = [];
         this.mediaArray = [];
+        this.mediaArrayTypes = [];
         this.selectedMediaTypes = [];
         this.componentArray = [];
         //form1 data
-        this.isUrgent = false;
+        this.urgent = false;
+        this.Test_type = "lab";
         this.shift = 0;
         this.isHalfShift = false;
         this.media_Quantity = 0;
@@ -179,10 +181,10 @@ var AddRequestComponent = /** @class */ (function () {
         this.editComponent_Num = this.replaceComponent[index].compo_num;
     };
     AddRequestComponent.prototype.addRequestMedia = function () {
-        var currenRequest = { media_name: '', media_type: '', media_Quantity: 0, id: 0, mediaID: 0 };
+        var currenRequest = { media_name: '', media_type: '', media_Quantity: 0, id: 0, mediaTypeID: 0 };
         if (this.media_nameID != '' && this.media_typeID != '' && this.media_Quantity != 0) {
             currenRequest.id = Number(this.media_nameID);
-            currenRequest.mediaID = Number(this.media_typeID);
+            currenRequest.mediaTypeID = Number(this.media_typeID);
             currenRequest.media_name = this.getSelectedMediaByID(Number(this.media_nameID)).name;
             currenRequest.media_type = this.getSelectedMediaTypeByID(Number(this.media_typeID)).name;
             currenRequest.media_Quantity = this.media_Quantity;
@@ -202,7 +204,7 @@ var AddRequestComponent = /** @class */ (function () {
             this.requestMedia[index].media_name = this.getSelectedMediaByID(Number(this.editMedia_name)).name;
         }
         if (Number(this.editMedia_type)) {
-            this.requestMedia[index].mediaID = Number(this.editMedia_type);
+            this.requestMedia[index].mediaTypeID = Number(this.editMedia_type);
             this.requestMedia[index].media_type = this.getSelectedMediaTypeByID(Number(this.editMedia_type)).name;
         }
         if (this.editMedia_Quantity != 0) {
@@ -247,9 +249,15 @@ var AddRequestComponent = /** @class */ (function () {
         this.compEditPopupViability.splice(index, 1);
     };
     AddRequestComponent.prototype.modifySelectedMediaTypes = function (selectedElem) {
+        var _this = this;
         this.selectedMediaID = selectedElem.value;
-        var media = this.getSelectedMediaByID(Number(this.selectedMediaID));
-        this.selectedMediaTypes = media.types;
+        this.selectedMediaTypes = [];
+        // var media = this.getSelectedMediaByID(Number(this.selectedMediaID));
+        this.mediaArrayTypes.map(function (type) {
+            if (type.media.id == Number(selectedElem.value)) {
+                _this.selectedMediaTypes.push(type);
+            }
+        });
     };
     AddRequestComponent.prototype.getSelectedMediaByID = function (mediaID) {
         for (var _i = 0, _a = this.mediaArray; _i < _a.length; _i++) {
@@ -299,17 +307,31 @@ var AddRequestComponent = /** @class */ (function () {
     AddRequestComponent.prototype.addFileBtn = function () {
         this.filesToUpload.push(true);
     };
+    AddRequestComponent.prototype.fillProductArray = function (selectedProject) {
+        var _this = this;
+        var selectedProjectID = selectedProject.value;
+        this.projectsArray.map(function (project) {
+            if (project.id == selectedProjectID) {
+                _this.productsArray = project.product;
+            }
+        });
+    };
     AddRequestComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.filesToUpload.push(true);
-        this.dataBaseService.getProducts().subscribe(function (products) {
-            _this.productsArray = products;
-        });
+        // this.dataBaseService.getProducts().subscribe(
+        //   (products) => {
+        //     this.productsArray = products;
+        //   }
+        // );
         this.dataBaseService.getProjects().subscribe(function (projects) {
             _this.projectsArray = projects;
         });
         this.dataBaseService.getMedia().subscribe(function (media) {
             _this.mediaArray = media;
+        });
+        this.dataBaseService.getMediaTypes().subscribe(function (mediaTypes) {
+            _this.mediaArrayTypes = mediaTypes;
         });
         this.dataBaseService.getComponents().subscribe(function (components) {
             _this.componentArray = components;
@@ -350,26 +372,32 @@ var AddRequestComponent = /** @class */ (function () {
         });
     };
     AddRequestComponent.prototype.initSubmitData = function () {
-        var _this = this;
         var selectedProject = this.getProjectByID(Number(this.Project_NameID));
         var selectedProduct = this.getProductByID(Number(this.Product_NameID));
-        var submitMedia = { mediaId: 0, name: 'string', quantity: 0, type: 'string' };
-        var submitMediaArray = [];
+        var submitMedia = { id: 0, name: 'string', quantity: 0, types: [], mediaTypeID: 0 };
+        var submitMediaTypeArray = [];
         var pressArray = [];
         var submitComponentArray = [];
-        var submitComponent = { compId: 0, name: 'string', quantity: 0 };
+        var submitComponent = { id: 0, name: 'string', quantity: 0 };
+        var submitMediaQuantity = [];
+        var submitCompQuantity = [];
+        var submitMediaType = [];
         this.requestMedia.map(function (media) {
-            submitMedia.mediaId = media.media_nameID;
-            submitMedia.name = _this.getSelectedMediaByID(media.media_nameID);
+            submitMedia.id = media.id;
+            submitMedia.name = media.media_name;
             submitMedia.quantity = media.media_Quantity;
-            submitMedia.type = _this.getSelectedMediaTypeByID(media.media_type);
-            submitMediaArray.push(submitMedia.mediaId);
+            submitMedia.types.push(media.media_type);
+            submitMedia.mediaTypeID = media.mediaTypeID;
+            submitMediaTypeArray.push(submitMedia.mediaTypeID);
+            submitMediaQuantity.push(submitMedia.quantity);
+            // submitMediaType.push(media.media_type);
         });
         this.replaceComponent.map(function (comp) {
             submitComponent.quantity = comp.compo_num;
             submitComponent.name = comp.compo_name;
-            submitComponent.compId = comp.compId;
-            submitComponentArray.push(submitComponent.compId);
+            submitComponent.id = comp.id;
+            submitComponentArray.push(submitComponent.id);
+            submitCompQuantity.push(submitComponent.quantity);
         });
         this.sliderService.chosenPressesArray.map(function (press) {
             pressArray.push(press.id);
@@ -380,17 +408,19 @@ var AddRequestComponent = /** @class */ (function () {
             isConsecutive: true,
             hub: 1,
             description: '',
-            media: submitMediaArray,
+            mediaTypes: submitMediaTypeArray,
             shiftsLength: this.shift,
             type: this.Test_type,
-            isArgent: this.isUrgent,
+            urgent: this.urgent,
             comment: this.Additional_Comment,
             name: this.Test_Name,
             project: selectedProject.id,
             product: selectedProduct.id,
             testObjecteves: this.Test_Objectives,
             components: submitComponentArray,
-            presses: pressArray //ids
+            presses: pressArray,
+            submitMediaQuantity: submitMediaQuantity,
+            submitCompQuantity: submitCompQuantity
         };
     };
     AddRequestComponent.prototype.getFileType = function (str) {
@@ -559,7 +589,7 @@ var routes = [
         ]
     },
     {
-        path: 'main',
+        path: 'secure/main',
         component: _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_7__["MainPageComponent"],
         children: [
             { path: 'myRequest', component: _requests_requests_component__WEBPACK_IMPORTED_MODULE_3__["RequestsComponent"] },
@@ -665,14 +695,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
 /* harmony import */ var _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./main-page/main-page.component */ "./src/app/main-page/main-page.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var angular2_wizard__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! angular2-wizard */ "./node_modules/angular2-wizard/dist/index.js");
-/* harmony import */ var angular2_wizard__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(angular2_wizard__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm5/slide-toggle.es5.js");
-/* harmony import */ var _add_request_add_request_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./add-request/add-request.component */ "./src/app/add-request/add-request.component.ts");
-/* harmony import */ var _slider_slider_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./slider/slider.component */ "./src/app/slider/slider.component.ts");
-/* harmony import */ var _enter_enter_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./enter/enter.component */ "./src/app/enter/enter.component.ts");
-/* harmony import */ var _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./upload-file/upload-file.component */ "./src/app/upload-file/upload-file.component.ts");
+/* harmony import */ var _services_jwt_interceptor_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/jwt-interceptor.service */ "./src/app/services/jwt-interceptor.service.ts");
+/* harmony import */ var angular2_wizard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! angular2-wizard */ "./node_modules/angular2-wizard/dist/index.js");
+/* harmony import */ var angular2_wizard__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(angular2_wizard__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm5/slide-toggle.es5.js");
+/* harmony import */ var _add_request_add_request_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./add-request/add-request.component */ "./src/app/add-request/add-request.component.ts");
+/* harmony import */ var _slider_slider_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./slider/slider.component */ "./src/app/slider/slider.component.ts");
+/* harmony import */ var _enter_enter_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./enter/enter.component */ "./src/app/enter/enter.component.ts");
+/* harmony import */ var _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./upload-file/upload-file.component */ "./src/app/upload-file/upload-file.component.ts");
 
 
 
@@ -690,7 +721,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import { JwtInterceptorService } from './services/jwt-interceptor.service';
+
+
 
 
 
@@ -712,10 +744,10 @@ var AppModule = /** @class */ (function () {
                 _log_in_log_in_component__WEBPACK_IMPORTED_MODULE_13__["LogInComponent"],
                 _register_register_component__WEBPACK_IMPORTED_MODULE_14__["RegisterComponent"],
                 _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_15__["MainPageComponent"],
-                _add_request_add_request_component__WEBPACK_IMPORTED_MODULE_20__["AddRequestComponent"],
-                _slider_slider_component__WEBPACK_IMPORTED_MODULE_21__["SliderComponent"],
-                _enter_enter_component__WEBPACK_IMPORTED_MODULE_22__["EnterComponent"],
-                _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_23__["UploadFileComponent"]
+                _add_request_add_request_component__WEBPACK_IMPORTED_MODULE_21__["AddRequestComponent"],
+                _slider_slider_component__WEBPACK_IMPORTED_MODULE_22__["SliderComponent"],
+                _enter_enter_component__WEBPACK_IMPORTED_MODULE_23__["EnterComponent"],
+                _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_24__["UploadFileComponent"]
             ],
             imports: [
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"],
@@ -724,16 +756,17 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"],
-                _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_19__["MatSlideToggleModule"],
+                _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_20__["MatSlideToggleModule"],
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
                 angular_font_awesome__WEBPACK_IMPORTED_MODULE_10__["AngularFontAwesomeModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_16__["HttpClientModule"],
-                angular2_wizard__WEBPACK_IMPORTED_MODULE_17__["FormWizardModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_18__["FormsModule"]
+                angular2_wizard__WEBPACK_IMPORTED_MODULE_18__["FormWizardModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_19__["FormsModule"]
             ],
             providers: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_3__["DatePipe"],
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_16__["HTTP_INTERCEPTORS"], useClass: _services_jwt_interceptor_service__WEBPACK_IMPORTED_MODULE_17__["JwtInterceptorService"], multi: true },
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
@@ -947,31 +980,29 @@ var LogInComponent = /** @class */ (function () {
         this.KeepMeSignedIn = !this.KeepMeSignedIn;
     };
     LogInComponent.prototype.signInKeyDown = function (event, userEmail, userPass) {
-        if (event.key === "Enter") {
+        if (event.key === 'Enter') {
             this.signIn(userEmail, userPass);
         }
     };
     LogInComponent.prototype.saveToken = function (token) {
-        localStorage.setItem("auth_token", JSON.stringify(token));
+        localStorage.setItem('auth_token', JSON.stringify(token));
     };
     LogInComponent.prototype.signIn = function (userEmail, userPass) {
         var _this = this;
-        this.router.navigate(['/main']);
-        return;
         userEmail = userEmail.trim();
         userPass = userPass.trim();
         if (!userEmail || !userPass) {
-            alert("please fill all spaces!");
+            alert('please fill all spaces!');
         }
-        this.userInfo.username = userEmail;
+        this.userInfo.email = userEmail;
         this.userInfo.password = userPass;
         this.dataBaseService.getLogInToken(this.userInfo).subscribe(function (token) {
             _this.saveToken(token);
             _this.showErrorMsg = false;
-            _this.router.navigate(['/main']);
-            _this.dataBaseService.userInfo = token;
+            _this.router.navigate(['/secure/main']);
+            return;
         }, function (error) {
-            _this.errorMsg = _this.localeService.getMessage("english", "auth_error_msg");
+            _this.errorMsg = error.error.message;
             _this.showErrorMsg = true;
         });
     };
@@ -1122,7 +1153,7 @@ module.exports = "\r\n\r\n.grid{\r\n  height:1000px;\r\n  display:grid;\r\n  gri
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"grid\">\r\n\r\n  <div class=\"request\">\r\n    <div class=\"req-title\">My Requests</div>\r\n    <button class=\"req-btn\" (click)=\"addRequest()\">+ New Request</button>\r\n  </div>\r\n\r\n  <div class=\"requestTable\">\r\n    <ul>\r\n      <li>Test name</li>\r\n      <li>Project name</li>\r\n      <li>Requested Date</li>\r\n      <li>Press</li>\r\n      <li>Status</li>\r\n      <li></li>\r\n    </ul>\r\n\r\n    <ul *ngFor=\"let request of requests;let i = index\" [class.noted]=\"request.comment\">\r\n      <li>{{request.name}}</li>\r\n      <li>{{request.project.name}}</li>\r\n      <li>{{request.created | date:'dd-mm-yyyy' }}</li>\r\n      <li><img class=\"press_img inline-block\" [src]=\"baseURL+request.presses[0].imageUrl\">\r\n        <div class=\"note inline-block\">{{request.presses[0].name}}</div>\r\n        <a href=\"#\" class=\"info-link\"><i class=\"info-icon fa fa-info-circle\" aria-hidden=\"true\"></i></a></li>\r\n      <li *ngIf=\"request.status=='PENDING' || request.status=='PLANNED'\">\r\n        <i class=\"pending icon fa fa-clock-o\" aria-hidden=\"true\"></i>\r\n        <div class=\"status inline-block\">Pending Approval</div>\r\n      </li>\r\n      <!--<li [class.remove]=\"!(request.status=='PENDING' || request.status=='PLANNED')\" ><i class=\"status-icon icon inline-block fa fa-check-circle-o\"></i><div class=\" status inline-block\">Pending Approval</div></li>-->\r\n\r\n      <li>\r\n        <i class=\"note-icon fa fa-list-alt\" aria-hidden=\"true\" (click)=\"toggleNoteDiv(i)\">\r\n          <div class=\"note\" *ngIf=\"noteDivs[i]\">{{request.comment}}</div>\r\n        </i>\r\n\r\n        <i class=\"sittings-icon fa fa-ellipsis-v\" (click)=\"toggleSittingDiv(i)\">\r\n          <div class=\"sittings\" *ngIf=\"sittingDivs[i]\">\r\n            <div class=\"duplicate\">Duplicate</div>\r\n            <div class=\"delete\">Delete Request</div>\r\n          </div>\r\n        </i>\r\n      </li>\r\n\r\n    </ul>\r\n\r\n    <app-add-request></app-add-request>\r\n\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n"
+module.exports = "<div class=\"grid\">\r\n\r\n  <div class=\"request\">\r\n    <div class=\"req-title\">My Requests</div>\r\n    <button class=\"req-btn\" (click)=\"addRequest()\">+ New Request</button>\r\n  </div>\r\n\r\n  <div class=\"requestTable\">\r\n    <ul>\r\n      <li>Test name</li>\r\n      <li>Project name</li>\r\n      <li>Requested Date</li>\r\n      <li>Press</li>\r\n      <li>Status</li>\r\n      <li></li>\r\n    </ul>\r\n\r\n    <ul *ngFor=\"let request of requests;let i = index\" [class.noted]=\"request.comment\">\r\n      <li>{{request.name}}</li>\r\n      <li>{{request.project.name}}</li>\r\n      <!--<li>{{request.created | date:'dd-mm-yyyy' }}</li>-->\r\n      <li>{{request.created }}</li>\r\n      <li><img class=\"press_img inline-block\" [src]=\"baseURL+request.presses[0].imageUrl\">\r\n        <div class=\"note inline-block\">{{request.presses[0].name}}</div>\r\n        <a href=\"#\" class=\"info-link\"><i class=\"info-icon fa fa-info-circle\" aria-hidden=\"true\"></i></a></li>\r\n      <li *ngIf=\"request.status=='PENDING' || request.status=='PLANNED'\">\r\n        <i class=\"pending icon fa fa-clock-o\" aria-hidden=\"true\"></i>\r\n        <div class=\"status inline-block\">Pending Approval</div>\r\n      </li>\r\n      <!--<li [class.remove]=\"!(request.status=='PENDING' || request.status=='PLANNED')\" ><i class=\"status-icon icon inline-block fa fa-check-circle-o\"></i><div class=\" status inline-block\">Pending Approval</div></li>-->\r\n\r\n      <li>\r\n        <i class=\"note-icon fa fa-list-alt\" aria-hidden=\"true\" (click)=\"toggleNoteDiv(i)\">\r\n          <div class=\"note\" *ngIf=\"noteDivs[i]\">{{request.comment}}</div>\r\n        </i>\r\n\r\n        <i class=\"sittings-icon fa fa-ellipsis-v\" (click)=\"toggleSittingDiv(i)\">\r\n          <div class=\"sittings\" *ngIf=\"sittingDivs[i]\">\r\n            <div class=\"duplicate\">Duplicate</div>\r\n            <div class=\"delete\">Delete Request</div>\r\n          </div>\r\n        </i>\r\n      </li>\r\n\r\n    </ul>\r\n\r\n    <app-add-request></app-add-request>\r\n\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -1222,18 +1253,21 @@ var httpOptions = {
 var DataBaseService = /** @class */ (function () {
     function DataBaseService(http) {
         this.http = http;
-        this.AuthURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + "/auth";
-        this.RequestURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + "/api/v1/request";
-        this.PressesURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + "/api/v1/presses" + "?hubId=1";
-        this.ProductURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + "/api/v1/products" + "?hubId=1";
-        this.ProjectURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + "/api/v1/projects" + "?hubId=1";
-        this.MediaURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + "/api/v1/media" + "?hubId=1";
-        this.ComponentURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + "/api/v1/components" + "?hubId=1";
-        this.AddRequestURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + "/api/v1/request";
+        // all secure except login and register
+        this.AuthURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + '/login';
+        this.secure = '/secure';
+        this.RequestURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + this.secure + '/api/v1/request';
+        this.PressesURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + this.secure + '/api/v1/presses' + '?hubId=1';
+        this.ProductURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + this.secure + '/api/v1/products' + '?hubId=1';
+        this.ProjectURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + this.secure + '/api/v1/projects' + '?hubId=1';
+        this.MediaURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + this.secure + '/api/v1/media' + '?hubId=1';
+        this.MediaTypeURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + this.secure + '/api/v1/mediaType' + '?hubId=1';
+        this.ComponentURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + this.secure + '/api/v1/components' + '?hubId=1';
+        this.AddRequestURL = _constant__WEBPACK_IMPORTED_MODULE_3__["data"].baseURL + this.secure + '/api/v1/request';
         this.userInfo = {};
     }
     DataBaseService.prototype.getLogInToken = function (userInfo) {
-        return this.http.post(this.AuthURL, userInfo, httpOptions);
+        return this.http.post(this.AuthURL, userInfo);
     };
     DataBaseService.prototype.getRequestByUserId = function () {
         return this.http.get(this.RequestURL, httpOptions);
@@ -1250,6 +1284,9 @@ var DataBaseService = /** @class */ (function () {
     DataBaseService.prototype.getMedia = function () {
         return this.http.get(this.MediaURL, httpOptions);
     };
+    DataBaseService.prototype.getMediaTypes = function () {
+        return this.http.get(this.MediaTypeURL, httpOptions);
+    };
     DataBaseService.prototype.getComponents = function () {
         return this.http.get(this.ComponentURL, httpOptions);
     };
@@ -1264,6 +1301,48 @@ var DataBaseService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], DataBaseService);
     return DataBaseService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/jwt-interceptor.service.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/services/jwt-interceptor.service.ts ***!
+  \*****************************************************/
+/*! exports provided: JwtInterceptorService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JwtInterceptorService", function() { return JwtInterceptorService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var JwtInterceptorService = /** @class */ (function () {
+    function JwtInterceptorService() {
+    }
+    JwtInterceptorService.prototype.intercept = function (req, next) {
+        var token = '';
+        if (localStorage.getItem('auth_token') != null && localStorage.getItem('auth_token') !== undefined && localStorage.getItem('auth_token') !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('auth_token')).tokenValue;
+        }
+        req = req.clone({
+            setHeaders: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+        return next.handle(req);
+    };
+    JwtInterceptorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], JwtInterceptorService);
+    return JwtInterceptorService;
 }());
 
 

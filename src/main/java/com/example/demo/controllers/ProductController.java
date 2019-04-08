@@ -13,32 +13,34 @@ import com.example.demo.entities.Product;
 import com.example.demo.services.ProductService;
 
 @RestController
+@RequestMapping("/secure/api/v1/")
+
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping("/api/v1/products")
+	@RequestMapping("products")
 	public List<Product> getAllProduct(){
 		return productService.getAllProducts();
 	}
 	
-	@RequestMapping("/api/v1/products/all/{id}")
+	@RequestMapping("products/all/{id}")
 	public Product getProduct(@PathVariable long id) {
 		 return productService.getProduct(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/api/v1/products")
+	@RequestMapping(method=RequestMethod.POST,value="products")
 	public void addProduct(@RequestBody Product product) {
 		productService.addProduct(product);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/api/v1/products/modify")
+	@RequestMapping(method=RequestMethod.PUT,value="products/modify")
 	public void updateProduct(@RequestBody Product product) {
 		productService.updateProduct(product);
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE,value="/api/v1/products/{id}")
+	@RequestMapping(method=RequestMethod.DELETE,value="products/{id}")
 	public void deleteProduct(@PathVariable long id) {
 		productService.deleteProduct(id);
  	}
